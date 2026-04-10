@@ -7,8 +7,8 @@ namespace Shinrai.Core
     {
         [SerializeField] private T _objectToPool;
         [SerializeField] private int _poolSize;
-        [SerializeField] private GameObject _poolParent;
         
+        private GameObject _parent;
         private List<T> _pooledObjects;
         
         private void Awake()
@@ -34,10 +34,12 @@ namespace Shinrai.Core
         {
             if(_objectToPool == null) return;
             
+            _parent = new GameObject("ObjectPool-" + _objectToPool.name); 
+            
             _pooledObjects = new List<T>();
             for (int i = 0; i < _poolSize; i++)
             {
-                T pooledObject = Instantiate(_objectToPool, null);
+                T pooledObject = Instantiate(_objectToPool, _parent.transform);
                 var currentName = _objectToPool.name;
                 currentName = currentName.Replace("(Clone)", i.ToString());
                 pooledObject.name = currentName;
