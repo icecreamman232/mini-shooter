@@ -1,4 +1,3 @@
-using System;
 using Shinrai.Core;
 using UnityEngine;
 
@@ -6,8 +5,11 @@ namespace Shinrai.Entity
 {
     public class PlayerMovement : EntityMovement
     {
+        [SerializeField] private Animator _animator;
         [SerializeField] private Rigidbody2D _rigidbody;
         private Vector2 _moveDirection;
+        private int _isRunningAnimBool = Animator.StringToHash("is_running");
+
         
         public void Initialize()
         {
@@ -29,6 +31,7 @@ namespace Shinrai.Entity
         private void OnReceiveMoveInput(Vector2 input)
         {
             _moveDirection = input;
+            _animator.SetBool(_isRunningAnimBool, input.magnitude > 0.1f);
         }
     }
 }

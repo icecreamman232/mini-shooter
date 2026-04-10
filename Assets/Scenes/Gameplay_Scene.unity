@@ -2690,6 +2690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 695813982}
   - component: {fileID: 695813983}
+  - component: {fileID: 695813984}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -2771,6 +2772,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &695813984
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695813981}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f1738eec7e329e04384dceccbfd9b840, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &812107494
 GameObject:
   m_ObjectHideFlags: 0
@@ -3799,6 +3822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Entity.PlayerMovement
   _speed: 6
+  _animator: {fileID: 695813984}
   _rigidbody: {fileID: 1771802479}
 --- !u!50 &1771802479
 Rigidbody2D:
