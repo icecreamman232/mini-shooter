@@ -1,3 +1,4 @@
+using Shinrai.Core;
 using Shinrai.Weapon;
 using UnityEngine;
 
@@ -19,6 +20,9 @@ namespace Shinrai.Entity
             _playerMovement.Initialize();
             _playerHealth.Initialize();
             _playerWeapon.Initialize(this);
+            
+            ServiceLocator.GetService<CameraController>().SetPlayer(transform);
+            ServiceLocator.GetService<CameraController>().SetActive(true);
         }
     }
 }
