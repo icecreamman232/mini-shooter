@@ -11,4 +11,16 @@
             MaxHealth = maxHealth;
         }
     }
+
+    public enum GameEvent
+    {
+        CreatedPlayer,
+        GameStarted,
+    }
+    
+    public struct GameEventChanged
+    {
+        public GameEvent GameEvent;
+    }
+    
 }

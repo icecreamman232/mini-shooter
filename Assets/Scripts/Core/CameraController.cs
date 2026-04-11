@@ -20,9 +20,14 @@ namespace Shinrai.Core
             ServiceLocator.UnregisterService<CameraController>();
         }
 
-        private void FixedUpdate()
+        private void LateUpdate()
         {
             if (!_isActive) return;
+            // _camera.transform.position = new Vector3(
+            //     _playerRef.position.x,
+            //     _playerRef.position.y,
+            //     _camera.transform.position.z
+            // );
             Vector3 targetPosition = Vector3.Lerp(transform.position, _playerRef.position, _followSpeed * Time.fixedDeltaTime);
             _camera.transform.position = new Vector3(
                 targetPosition.x,
