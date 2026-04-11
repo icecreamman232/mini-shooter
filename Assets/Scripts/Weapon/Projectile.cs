@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Shinrai.Entity;
+using UnityEngine;
 
 namespace Shinrai.Weapon
 {
@@ -6,10 +7,12 @@ namespace Shinrai.Weapon
     {
         [SerializeField] protected float _speed;
         [SerializeField] [Min(0)] protected float _range;
+        [SerializeField] protected DamageComponent _damageComponent;
         
         protected float _travelDistance;
         protected Vector2 _startPosition;
         protected bool _isActive;
+        
         
         private void Update()
         {
@@ -21,10 +24,20 @@ namespace Shinrai.Weapon
                 DestroyProjectile();
             }
         }
-        
-        public void Spawn()
+
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_damageComponent.HandleCollision(other))
+            {
+                DestroyProjectile();
+            }
+        }
+
+        public void Spawn(EntityController owner)
         {
             _isActive = true;
+            _damageComponent.AssignOwner(owner);
             gameObject.SetActive(true);
             _travelDistance = 0;
             _startPosition = transform.position;

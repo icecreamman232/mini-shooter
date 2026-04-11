@@ -1,4 +1,5 @@
 using System.Collections;
+using Shinrai.Entity;
 using UnityEngine;
 
 namespace Shinrai.Weapon
@@ -9,10 +10,11 @@ namespace Shinrai.Weapon
         [SerializeField] private float _delayBetweenShots;
 
         protected bool _canShoot = true;
+        protected EntityController _owner;
        
-        public virtual void Initialize()
+        public virtual void Initialize(EntityController owner)
         {
-            
+            _owner = owner;
         }
         
         public virtual void Shoot(Vector2 shootDirection)
@@ -23,7 +25,7 @@ namespace Shinrai.Weapon
             
             newProjectile.transform.position = transform.position;
             newProjectile.transform.up = shootDirection;
-            newProjectile.Spawn();
+            newProjectile.Spawn(_owner);
             StartCoroutine(OnDelayBetweenShots());
         }
         

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Shinrai.Core
 {
     public static class Util
@@ -14,6 +16,15 @@ namespace Shinrai.Core
         public static float Remap(float value, float from1, float to1, float from2, float to2)
         {
             return from2 + (value - from1)/(to1 - from1) * (to2 - from2);
+        }
+        
+        public static bool IsInLayerMask(int layerWantToCheck, LayerMask layerMask)
+        {
+            if (((1 << layerWantToCheck) & layerMask) != 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

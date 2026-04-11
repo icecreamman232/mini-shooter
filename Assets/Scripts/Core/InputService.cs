@@ -69,7 +69,6 @@ namespace Shinrai.Core
 
         private void ShootActionOnPerformed(InputAction.CallbackContext callbackContext)
         {
-            Debug.Log("Shoot action performed");
             ShootInputCallback?.Invoke();
         }
     }

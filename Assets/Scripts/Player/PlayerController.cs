@@ -18,7 +18,7 @@ namespace Shinrai.Entity
         {
             _playerMovement.Initialize();
             _playerHealth.Initialize();
-            _playerWeapon.Initialize();
+            _playerWeapon.Initialize(this);
         }
     }
 }

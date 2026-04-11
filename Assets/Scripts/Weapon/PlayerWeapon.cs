@@ -1,4 +1,5 @@
 using Shinrai.Core;
+using Shinrai.Entity;
 
 namespace Shinrai.Weapon
 {
@@ -6,11 +7,11 @@ namespace Shinrai.Weapon
     {
         private InputService _inputService;
         
-        public override void Initialize()
+        public override void Initialize(EntityController owner)
         {
             _inputService = ServiceLocator.GetService<InputService>();
             _inputService.ShootInputCallback += OnShootInput;
-            base.Initialize();
+            base.Initialize(owner);
         }
 
         private void OnDestroy()
