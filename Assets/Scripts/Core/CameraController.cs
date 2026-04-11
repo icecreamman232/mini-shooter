@@ -36,6 +36,14 @@ namespace Shinrai.Core
             );
         }
 
+        public void SetPosition(Vector3 newPosition)
+        {
+            _camera.transform.position = new Vector3(
+                newPosition.x,
+                newPosition.y,
+                _camera.transform.position.z);
+        }
+
         public void SetPlayer(Transform playerRef)
         {
             _playerRef = playerRef;

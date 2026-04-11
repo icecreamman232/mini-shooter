@@ -141,6 +141,7 @@ MonoBehaviour:
   _currentHealth: 0
   _maxHealth: 50
   _invulnerableTime: 0.3
+  _enemyController: {fileID: 4903612373417928044}
 --- !u!114 &8623940683737338184
 MonoBehaviour:
   m_ObjectHideFlags: 0

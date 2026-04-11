@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Shinrai.Core
@@ -26,5 +27,16 @@ namespace Shinrai.Core
             }
             return false;
         }
+
+        public static T PickRandom<T>(this List<T> list)
+        {
+            return list.Count == 0 ? default : list[Random.Range(0, list.Count)];
+        }
+        
+        public static T PickRandom<T>(this T[] array)
+        {
+            return array.Length == 0 ? default : array[Random.Range(0, array.Length)];
+        }
+        
     }
 }

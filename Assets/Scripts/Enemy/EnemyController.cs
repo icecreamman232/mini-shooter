@@ -12,6 +12,8 @@ namespace Shinrai.Entity
         
         public EnemyMovement Movement => _movement;
         public EnemyHealth Health => _health;
+        
+        
 
         private void Start()
         {

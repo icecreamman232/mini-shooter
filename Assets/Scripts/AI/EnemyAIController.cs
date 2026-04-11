@@ -8,9 +8,11 @@ namespace Shinrai.AI
     {
         [SerializeField] private EnemyAIState[] _states;
         private int _currentStateIndex;
-
+        private EnemyController _controller;
+        
         public void Initialize(EnemyController controller)
         {
+            _controller = controller;
             foreach (var state in _states)
             {
                 state.Behavior.Initialize(controller);
@@ -19,13 +21,13 @@ namespace Shinrai.AI
 
         public void WakeUp()
         {
-            _states[0].Behavior.OnEnterState();
+            _states[0].Behavior.OnEnterState(_controller);
             _currentStateIndex = 0;
         }
 
         private void FixedUpdate()
         {
-            _states[_currentStateIndex].Behavior.OnUpdate();
+            _states[_currentStateIndex].Behavior.OnUpdate(_controller);
         }
     }
 

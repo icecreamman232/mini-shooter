@@ -5,28 +5,26 @@ namespace Shinrai.AI
 {
     public class AIBehavior : ScriptableObject
     {
-        protected EnemyController _controller;
-        
         public virtual void Initialize(EnemyController controller)
         {
-            _controller = controller;
+            
         }
 
         public virtual void Clean()
         {
-            _controller = null;
+            
         }
         
-        public virtual void OnEnterState()
+        public virtual void OnEnterState(EnemyController controller)
         {
         }
 
-        public virtual void OnUpdate()
+        public virtual void OnUpdate(EnemyController controller)
         {
             
         }
         
-        public virtual void OnExitState()
+        public virtual void OnExitState(EnemyController controller)
         {
             
         }
