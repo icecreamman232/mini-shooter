@@ -1,3 +1,4 @@
+using System;
 using Shinrai.Core;
 using Shinrai.Entity;
 using UnityEngine;
@@ -20,6 +21,12 @@ namespace Shinrai.AI
             }
             var distanceToPlayer = Vector2.Distance(controller.transform.position, _playerController.position);
             return distanceToPlayer <= _rangeToCheck;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _rangeToCheck);
         }
     }
 }

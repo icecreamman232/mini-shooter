@@ -596,6 +596,7 @@ MonoBehaviour:
   - {fileID: 5974648890319025457, guid: 34eb8a031afd5bc4093c47e2b3ac8e68, type: 3}
   _enemyPrefabs:
   - {fileID: 4903612373417928044, guid: f2d02032888b00d4bb0433fd2715cda4, type: 3}
+  - {fileID: 6401598190447477137, guid: b1e37c48dcbaa9b4a8e515d7239b2d42, type: 3}
 --- !u!1 &936043171
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,14 +27,21 @@ namespace Shinrai.AI
         private void FixedUpdate()
         {
             _currentState.Behavior.OnUpdate(_controller);
-            if (_currentState.Condition != null &&
-                _currentState.Condition.IsConditionMet(_controller))
+            if (_currentState.Condition == null) return;
+
+            if(_currentState.Condition.IsConditionMet(_controller))
             {
-               if (_currentState.TrueState != null)
-               {
-                   _currentState = _currentState.TrueState;
-                   _currentState.Behavior.OnEnterState(_controller);
-               }
+                if (_currentState.TrueState == null) return;
+                _currentState.Behavior.OnExitState(_controller);
+                _currentState = _currentState.TrueState;
+                _currentState.Behavior.OnEnterState(_controller);
+            }
+            else
+            {
+                if (_currentState.FalseState == null) return;
+                _currentState.Behavior.OnExitState(_controller);
+                _currentState = _currentState.FalseState;
+                _currentState.Behavior.OnEnterState(_controller);
             }
         }
     }

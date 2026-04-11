@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ad8068a6c80e87b4d85e00fdd68ad51d
+guid: c41200611f70ff44d92187a7438933ba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5108020667906848606
-    second: enemy-atlas_0
+      213: 363453883809735979
+    second: enemy-projectile-atlas_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy-worm
+      name: bat-projectile
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 24
+        y: 24
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e57f0f7ebb553e640800000000000000
-      internalID: 5108020667906848606
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: enemy-bat
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39bb0fccc49956942b4f8188c44d92e1
-      internalID: -199184603
+      spriteID: b2527b4b16f3b0500800000000000000
+      internalID: 363453883809735979
       vertices: []
       indices: 
       edges: []
@@ -160,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0d40546a5e02a0241a068b8c93128bbc
+    spriteID: 779102b9cc0769246b1fcba749041d50
     internalID: 0
     vertices: []
     indices: 
@@ -170,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      enemy-bat: -199184603
-      enemy-worm: 5108020667906848606
+      bat-projectile: 363453883809735979
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
