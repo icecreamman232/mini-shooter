@@ -111,8 +111,8 @@ MonoBehaviour:
   _damageableLayers:
     serializedVersion: 2
     m_Bits: 384
-  _minDamage: 40
-  _maxDamage: 50
+  _minDamage: 20
+  _maxDamage: 35
 --- !u!1 &5963725975913441418
 GameObject:
   m_ObjectHideFlags: 0

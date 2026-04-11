@@ -8,7 +8,7 @@ namespace Shinrai.Entity
         [Header("Health")]
         [SerializeField] protected float _currentHealth;
         [SerializeField] protected float _maxHealth;
-        [SerializeField] protected float _invulnerableTime;
+        [SerializeField] protected float _invulnerableTime = 0.3f;
         
         protected bool _isInvulnerable;
         public bool IsDead => _currentHealth <= 0;
@@ -42,6 +42,7 @@ namespace Shinrai.Entity
         protected virtual void Kill()
         {
             _isInvulnerable = false;
+            gameObject.SetActive(false);
         }
 
         protected virtual IEnumerator OnInvulnerable()

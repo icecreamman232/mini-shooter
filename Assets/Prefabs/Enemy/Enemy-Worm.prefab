@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5497037367762777513}
   - component: {fileID: 7374113313957991645}
   - component: {fileID: 4903612373417928044}
+  - component: {fileID: 5057563332851718763}
   - component: {fileID: 8623940683737338184}
   - component: {fileID: 1702353645449071684}
   m_Layer: 7
@@ -123,7 +124,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   _movement: {fileID: 8623940683737338184}
+  _health: {fileID: 5057563332851718763}
   _aiController: {fileID: 1702353645449071684}
+--- !u!114 &5057563332851718763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4720376708310519289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dea19dfadc402f44afcaf9adf0cb425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Entity.EnemyHealth
+  _currentHealth: 0
+  _maxHealth: 50
+  _invulnerableTime: 0.3
 --- !u!114 &8623940683737338184
 MonoBehaviour:
   m_ObjectHideFlags: 0
