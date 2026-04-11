@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Shinrai.AI
 {
-    public class AIBehavior : ScriptableObject
+    public class AIBehavior : MonoBehaviour
     {
         public virtual void Initialize(EnemyController controller)
         {
