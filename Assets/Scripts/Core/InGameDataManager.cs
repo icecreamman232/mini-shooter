@@ -8,7 +8,7 @@ namespace Shinrai.Core
     public class InGameDataManager : MonoBehaviour, IGameService
     {
         public Transform PlayerTransform;
-        
+        public bool IsGamePaused;
         public GameEventChanged GameEventChanged;
         
         private void Awake()

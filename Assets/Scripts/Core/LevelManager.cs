@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Shinrai.Entity;
 using Shinrai.Levels;
@@ -12,6 +13,7 @@ namespace Shinrai.Core
         [SerializeField] private Room[] _roomPrefabs;
         [SerializeField] private EnemyController[] _enemyPrefabs;
         
+        private PlayerController _player;
         private HashSet<EnemyController> _spawnedEnemies;
         private Room _currentRoom;
         
@@ -35,17 +37,46 @@ namespace Shinrai.Core
 
         private void InitializeNextLevel()
         {
+            StartCoroutine(OnLoadNextLevel());
+        }
+
+        private IEnumerator OnLoadNextLevel()
+        {
+            EventBus.Emit(new LoadingScreenEvent
+            {
+                LoadingDuration = 0.5f,
+                IsFadeOut = false
+            });
+            yield return new WaitForSeconds(0.5f);
             
+            CreateRoom();
+            ServiceLocator.GetService<CameraController>().SetPosition(_currentRoom.PlayerSpawnPoint.position);
+            CreatePlayer(_currentRoom.PlayerSpawnPoint.position);
+            SpawnEnemies(_currentRoom.EnemySpawnPoints);
+            
+            EventBus.Emit(new LoadingScreenEvent
+            {
+                LoadingDuration = 0.5f,
+                IsFadeOut = true
+            });
         }
 
         private void CreatePlayer(Vector3 spawnPosition)
         {
-            var player = Instantiate(_playerPrefab, spawnPosition, Quaternion.identity);
-            
+            if (_player != null)
+            {
+                _player.transform.position = spawnPosition;
+                return;
+            }
+            _player = Instantiate(_playerPrefab, spawnPosition, Quaternion.identity);
         }
 
         private void CreateRoom()
         {
+            if (_currentRoom != null)
+            {
+                Destroy(_currentRoom.gameObject);
+            }
             var chosenPrefab = _roomPrefabs.PickRandom();
             _currentRoom = Instantiate(chosenPrefab, Vector3.zero, Quaternion.identity, _roomParent);
         }
@@ -73,6 +104,7 @@ namespace Shinrai.Core
         {
             _spawnedEnemies.Remove(controller);
             controller.Health.OnEnemyDeath -= OnEnemyDead;
+            //All enemies area dead, we load next level
             if (_spawnedEnemies.Count == 0)
             {
                 InitializeNextLevel();
