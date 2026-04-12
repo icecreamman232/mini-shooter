@@ -8,11 +8,13 @@ namespace Shinrai.Core
     {
         private InputAction _moveAction;
         private InputAction _shootAction;
+        private InputAction _interactAction;
         private bool _isActive;
         private Camera _camera;
 
         public Action<Vector2> MoveInputCallback;
         public Action ShootInputCallback;
+        public Action InteractInputCallback;
         public Action<Vector2> WorldMousePositionCallback;
         
 
@@ -55,21 +57,29 @@ namespace Shinrai.Core
         {
             _moveAction = InputSystem.actions.FindAction("Move");
             _shootAction = InputSystem.actions.FindAction("Attack");
+            _interactAction = InputSystem.actions.FindAction("Interact");
         }
 
         private void RegisterActions()
         {
             _shootAction.performed += ShootActionOnPerformed;
+            _interactAction.performed += InteractActionOnPerformed;
         }
 
         private void UnregisterActions()
         {
             _shootAction.performed -= ShootActionOnPerformed;
+            _interactAction.performed -= InteractActionOnPerformed;
         }
 
         private void ShootActionOnPerformed(InputAction.CallbackContext callbackContext)
         {
             ShootInputCallback?.Invoke();
+        }
+        
+        private void InteractActionOnPerformed(InputAction.CallbackContext callbackContext)
+        {
+            InteractInputCallback?.Invoke();
         }
     }
 }
