@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 0db66e559b62d604a8b0846cd2836815, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 6416725718804624234}
   - component: {fileID: 5589326688474112900}
   - component: {fileID: 776943986628031317}
+  - component: {fileID: 7571443340854475648}
   m_Layer: 0
   m_Name: Treasure_Chest
   m_TagString: Untagged
@@ -175,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Levels.TreasureChest
   _itemSpawner: {fileID: 776943986628031317}
+  _outline: {fileID: 7571443340854475648}
 --- !u!114 &776943986628031317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,3 +191,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSpawner
   _itemPickerPrefab: {fileID: 8315196621936689717, guid: 9a86e775e238a4240b4ab437c75553b3, type: 3}
   _spawnRange: 1.5
+--- !u!114 &7571443340854475648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6094732865369361299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ebd72b93120194c9f6aa408f6eb56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.VFX.SpriteOutline
+  _outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  _outlineSize: 1
+  _spriteRenderer: {fileID: 5819672824128346589}

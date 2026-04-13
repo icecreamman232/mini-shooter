@@ -1,6 +1,7 @@
 using System.Collections;
 using Shinrai.Core;
 using Shinrai.Items;
+using Shinrai.VFX;
 using UnityEngine;
 
 namespace Shinrai.Levels
@@ -8,6 +9,7 @@ namespace Shinrai.Levels
     public class TreasureChest : MonoBehaviour
     {
         [SerializeField] private ItemSpawner _itemSpawner;
+        [SerializeField] private SpriteOutline _outline;
         private TreasureChestPromptEvent _treasureChestPromptEvent;
         private bool _isPromptVisible;
 
@@ -55,6 +57,7 @@ namespace Shinrai.Levels
         {
             _treasureChestPromptEvent.IsPromptVisible = true;
             _isPromptVisible = true;
+            _outline.ShowOutline();
             EventBus.Emit(_treasureChestPromptEvent);
         }
         
@@ -62,6 +65,7 @@ namespace Shinrai.Levels
         {
             _treasureChestPromptEvent.IsPromptVisible = false;
             _isPromptVisible = false;
+            _outline.HideOutline();
             EventBus.Emit(_treasureChestPromptEvent);
         }
     }
