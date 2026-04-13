@@ -1,11 +1,13 @@
-using System;
+using System.Collections;
 using Shinrai.Core;
+using Shinrai.Items;
 using UnityEngine;
 
 namespace Shinrai.Levels
 {
     public class TreasureChest : MonoBehaviour
     {
+        [SerializeField] private ItemSpawner _itemSpawner;
         private TreasureChestPromptEvent _treasureChestPromptEvent;
         private bool _isPromptVisible;
 
@@ -23,9 +25,19 @@ namespace Shinrai.Levels
         private void OnOpenChest()
         {
             if (!_isPromptVisible) return;
+
+            StartCoroutine(OpeningChestCoroutine());
+        }
+
+        private IEnumerator OpeningChestCoroutine()
+        {
+            var itemList = ServiceLocator.GetService<ItemService>().GetItemByRarity(Rarity.Common);
+            _itemSpawner.SpawnItems(itemList, transform.position, 1.5f);
+            yield return new WaitUntil(()=> _itemSpawner.SpawnFinished);
             HideChestPrompt();
             Destroy(gameObject);
         }
+        
 
         private void OnTriggerEnter2D(Collider2D other)
         {

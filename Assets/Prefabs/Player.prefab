@@ -184,11 +184,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4676040164906172313}
-  - component: {fileID: 1226153948854048859}
-  - component: {fileID: 4966378709696080940}
   - component: {fileID: 3111736390001700732}
   - component: {fileID: 3784658191908588066}
+  - component: {fileID: 1226153948854048859}
+  - component: {fileID: 4966378709696080940}
   - component: {fileID: 565529906959493948}
+  - component: {fileID: -6260939767814385123}
+  - component: {fileID: -6371111107976080044}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -213,36 +215,6 @@ Transform:
   - {fileID: 7068575766796472738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1226153948854048859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7715894522308843999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1ed777110d7bd43b47394ca74ac6a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Entity.PlayerController
-  _playerMovement: {fileID: 4966378709696080940}
-  _playerHealth: {fileID: 565529906959493948}
-  _playerWeapon: {fileID: 3012807075749873088}
---- !u!114 &4966378709696080940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7715894522308843999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 168ac077774122f419ecec1121659f3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Entity.PlayerMovement
-  _speed: 6
-  _animator: {fileID: 5282379751957606058}
-  _rigidbody: {fileID: 3111736390001700732}
 --- !u!50 &3111736390001700732
 Rigidbody2D:
   serializedVersion: 5
@@ -316,6 +288,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.68007123, y: 0.6092216}
   m_EdgeRadius: 0
+--- !u!114 &1226153948854048859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715894522308843999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed1ed777110d7bd43b47394ca74ac6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Entity.PlayerController
+  _playerMovement: {fileID: 4966378709696080940}
+  _playerHealth: {fileID: 565529906959493948}
+  _playerWeapon: {fileID: 3012807075749873088}
+  _playerInventory: {fileID: -6260939767814385123}
+--- !u!114 &4966378709696080940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715894522308843999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168ac077774122f419ecec1121659f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Entity.PlayerMovement
+  _speed: 6
+  _animator: {fileID: 5282379751957606058}
+  _rigidbody: {fileID: 3111736390001700732}
 --- !u!114 &565529906959493948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,3 +334,29 @@ MonoBehaviour:
   _currentHealth: 0
   _maxHealth: 100
   _invulnerableTime: 0.3
+--- !u!114 &-6260939767814385123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715894522308843999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28fbc1abb2306f94586bbc419420c14d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Entity.PlayerInventory
+  _modifierComponent: {fileID: -6371111107976080044}
+  _equippedItems: []
+--- !u!114 &-6371111107976080044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715894522308843999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c444b4bcb12b7c489e81066ebe24289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Modifiers.ModifierComponent

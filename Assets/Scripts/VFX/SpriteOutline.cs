@@ -6,16 +6,15 @@ namespace Shinrai.VFX
     {
         [SerializeField] Color _outlineColor = Color.white;
         [SerializeField] int _outlineSize = 1;
-
-        SpriteRenderer _spriteRenderer;
-        MaterialPropertyBlock _materialPropertyBlock;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+        
+        private MaterialPropertyBlock _materialPropertyBlock;
 
         static readonly int OutlineSizeProp  = Shader.PropertyToID("_OutlineSize");
         static readonly int OutlineColorProp = Shader.PropertyToID("_OutlineColor");
 
-        void Awake()
+        private void Awake()
         {
-            _spriteRenderer  = GetComponent<SpriteRenderer>();
             _materialPropertyBlock = new MaterialPropertyBlock();
         }
 

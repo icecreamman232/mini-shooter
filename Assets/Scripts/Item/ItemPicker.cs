@@ -1,3 +1,4 @@
+using Shinrai.Items;
 using Shinrai.VFX;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ namespace Shinrai.Levels
 {
     public class ItemPicker : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer _itemIcon;
         [SerializeField] private SpriteOutline _outline;
         
         private bool _isSelected;
@@ -21,9 +23,9 @@ namespace Shinrai.Levels
             OnDeselect();
         }
 
-        public void AssignItem()
+        public void AssignItem(Item item)
         {
-            
+            _itemIcon.sprite = item.Definition.Icon;
         }
 
         private void OnPickUp()
@@ -35,12 +37,14 @@ namespace Shinrai.Levels
 
         private void OnSelect()
         {
+            if (_itemIcon == null) return;
             _outline.ShowOutline();
             _isSelected = true;
         }
         
         private void OnDeselect()
         {
+            if (_itemIcon == null) return;
             _outline.HideOutline();
             _isSelected = false;
         }

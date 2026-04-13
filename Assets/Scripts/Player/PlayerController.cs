@@ -1,4 +1,5 @@
 using Shinrai.Core;
+using Shinrai.Modifiers;
 using Shinrai.Weapon;
 using UnityEngine;
 
@@ -9,7 +10,10 @@ namespace Shinrai.Entity
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private PlayerWeapon _playerWeapon;
+        [SerializeField] private PlayerInventory _playerInventory;
+        public PlayerInventory PlayerInventory => _playerInventory;
 
+        
         private void Start()
         {
             Initialize();
@@ -17,6 +21,7 @@ namespace Shinrai.Entity
 
         public void Initialize()
         {
+            _playerInventory.Initialize();
             _playerMovement.Initialize();
             _playerHealth.Initialize();
             _playerWeapon.Initialize(this);
