@@ -1,3 +1,5 @@
+using System;
+using Shinrai.Core;
 using Shinrai.Items;
 using Shinrai.VFX;
 using UnityEngine;
@@ -8,8 +10,19 @@ namespace Shinrai.Levels
     {
         [SerializeField] private SpriteRenderer _itemIcon;
         [SerializeField] private SpriteOutline _outline;
-        
+
+        private Item _assignedItem;
         private bool _isSelected;
+
+        private void Awake()
+        {
+            ServiceLocator.GetService<InputService>().InteractInputCallback += OnPickUp;
+        }
+
+        private void OnDestroy()
+        {
+            ServiceLocator.GetService<InputService>().InteractInputCallback -= OnPickUp;
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -25,26 +38,28 @@ namespace Shinrai.Levels
 
         public void AssignItem(Item item)
         {
+            _assignedItem = item;
             _itemIcon.sprite = item.Definition.Icon;
         }
 
         private void OnPickUp()
         {
             if (!_isSelected) return;
+            var playerController = ServiceLocator.GetService<InGameDataManager>().PlayerController;
+            playerController.PlayerInventory.AddItem(_assignedItem);
             
+            Destroy(gameObject);
         }
 
 
         private void OnSelect()
         {
-            if (_itemIcon == null) return;
             _outline.ShowOutline();
             _isSelected = true;
         }
         
         private void OnDeselect()
         {
-            if (_itemIcon == null) return;
             _outline.HideOutline();
             _isSelected = false;
         }

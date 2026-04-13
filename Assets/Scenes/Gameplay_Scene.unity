@@ -128,10 +128,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5857991734957690225, guid: f5bea823d7667484c82a742c5ead1083, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857991734957690225, guid: f5bea823d7667484c82a742c5ead1083, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -142,10 +138,6 @@ PrefabInstance:
     - target: {fileID: 5857991734957690225, guid: f5bea823d7667484c82a742c5ead1083, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5857991734957690225, guid: f5bea823d7667484c82a742c5ead1083, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5857991734957690225, guid: f5bea823d7667484c82a742c5ead1083, type: 3}
       propertyPath: m_LocalRotation.y
@@ -943,6 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Core.InGameDataManager
   PlayerTransform: {fileID: 0}
+  PlayerController: {fileID: 0}
   IsGamePaused: 0
 --- !u!4 &1000371625
 Transform:

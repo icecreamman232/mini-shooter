@@ -17,6 +17,8 @@ namespace Shinrai.Core
         private HashSet<EnemyController> _spawnedEnemies;
         private Room _currentRoom;
         
+        public PlayerController Player => _player;
+        
         public void Install()
         {
             InitializeFirstLevel();

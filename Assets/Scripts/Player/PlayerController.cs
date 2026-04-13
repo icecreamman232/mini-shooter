@@ -28,7 +28,7 @@ namespace Shinrai.Entity
             
             ServiceLocator.GetService<CameraController>().SetPlayer(transform);
             ServiceLocator.GetService<CameraController>().SetActive(true);
-            ServiceLocator.GetService<InGameDataManager>().PlayerTransform = transform;
+            ServiceLocator.GetService<InGameDataManager>().AssignPlayer(transform);
         }
     }
 }
