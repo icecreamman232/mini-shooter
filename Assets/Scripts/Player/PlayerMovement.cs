@@ -9,7 +9,6 @@ namespace Shinrai.Entity
         [SerializeField] private Rigidbody2D _rigidbody;
         private Vector2 _moveDirection;
         private int _isRunningAnimBool = Animator.StringToHash("is_running");
-
         
         public void Initialize()
         {

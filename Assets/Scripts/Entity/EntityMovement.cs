@@ -6,5 +6,7 @@ namespace Shinrai.Entity
     {
         [Header("Movement")]
         [SerializeField] protected float _speed;
+        
+        public float Speed => _speed;
     }
 }

@@ -12,6 +12,8 @@ namespace Shinrai.Entity
         
         protected bool _isInvulnerable;
         public bool IsDead => _currentHealth <= 0;
+        public float CurrentHealth => _currentHealth;
+        public float MaxHealth => _maxHealth;
 
         public virtual void Initialize()
         {

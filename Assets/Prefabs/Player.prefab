@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 565529906959493948}
   - component: {fileID: -6260939767814385123}
   - component: {fileID: -6371111107976080044}
+  - component: {fileID: 3471440013747482015}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -304,6 +305,7 @@ MonoBehaviour:
   _playerHealth: {fileID: 565529906959493948}
   _playerWeapon: {fileID: 3012807075749873088}
   _playerInventory: {fileID: -6260939767814385123}
+  _statComponent: {fileID: 3471440013747482015}
 --- !u!114 &4966378709696080940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +336,7 @@ MonoBehaviour:
   _currentHealth: 0
   _maxHealth: 100
   _invulnerableTime: 0.3
+  _statComponent: {fileID: 3471440013747482015}
 --- !u!114 &-6260939767814385123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,3 +363,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c444b4bcb12b7c489e81066ebe24289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Modifiers.ModifierComponent
+  _statComponent: {fileID: 3471440013747482015}
+--- !u!114 &3471440013747482015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715894522308843999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541919aac3a6b9f438b8fb9fd017a6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Modifiers.StatComponent
