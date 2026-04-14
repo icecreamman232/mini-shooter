@@ -17,7 +17,7 @@ namespace Shinrai.Weapon
             _owner = owner;
         }
         
-        public virtual void Shoot(Vector2 shootDirection)
+        public virtual void Shoot(Vector2 shootDirection, float minDamage = 0, float maxDamage = 0)
         {
             if (!_canShoot) return;
             var newProjectile = _projectilePool.GetPooledObject();
@@ -25,7 +25,7 @@ namespace Shinrai.Weapon
             
             newProjectile.transform.position = transform.position;
             newProjectile.transform.up = shootDirection;
-            newProjectile.Spawn(_owner);
+            newProjectile.Spawn(_owner, minDamage, maxDamage);
             StartCoroutine(OnDelayBetweenShots());
         }
         

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Shinrai.Data;
 using Shinrai.Entity;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Shinrai.Modifiers
 {
     public class StatComponent : MonoBehaviour
     {
+        [SerializeField] private CharacterData _characterData;
         private Dictionary<StatTarget, float> _baseValues;
         private Dictionary<StatTarget, float> _finalValues;
 
@@ -31,13 +33,20 @@ namespace Shinrai.Modifiers
         {
             _baseValues = new Dictionary<StatTarget, float>
             {
-                [StatTarget.CurrentHP] = player.Health.CurrentHealth,
-                [StatTarget.MaxHP] = player.Health.MaxHealth,
-                [StatTarget.MoveSpeed] = player.Movement.Speed,
-                [StatTarget.MinDamage] = 0,
-                [StatTarget.MaxDamage] = 0
+                [StatTarget.CurrentHP] = _characterData.DefaultHealth,
+                [StatTarget.MaxHP] = _characterData.DefaultHealth,
+                [StatTarget.MoveSpeed] = _characterData.DefaultSpeed,
+                [StatTarget.MinDamage] = _characterData.DefaultMinDamage,
+                [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage
             };
-            _finalValues = new Dictionary<StatTarget, float>();
+            _finalValues = new Dictionary<StatTarget, float>()
+            {
+                [StatTarget.CurrentHP] = _characterData.DefaultHealth,
+                [StatTarget.MaxHP] = _characterData.DefaultHealth,
+                [StatTarget.MoveSpeed] = _characterData.DefaultSpeed,
+                [StatTarget.MinDamage] = _characterData.DefaultMinDamage,
+                [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage
+            };
         }
         
         public float GetBase(StatTarget stat) => _baseValues[stat];

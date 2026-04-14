@@ -15,6 +15,11 @@ namespace Shinrai.Items
     }
     
     
+    /// <summary>
+    /// Item is a runtime class that hold item definition and modifier instances for references. <br/>
+    /// Item is used to represent the item that the player has in their inventory. <br/>
+    /// <b> ModifierInstances</b> are created from <b>ItemDefinition.ModifierRecords</b> on initialization.
+    /// </summary>
     [Serializable]
     public class Item
     {
@@ -33,11 +38,6 @@ namespace Shinrai.Items
                 var modifierInstance = new ModifierInstance(modiferRecord);
                 _modifierInstances.Add(modifierInstance);
             }
-        }
-        
-        public void ApplyModifiers(PlayerController playerController)
-        {
-            
         }
     }
 }

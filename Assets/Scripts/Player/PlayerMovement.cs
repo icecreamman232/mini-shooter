@@ -1,4 +1,5 @@
 using Shinrai.Core;
+using Shinrai.Modifiers;
 using UnityEngine;
 
 namespace Shinrai.Entity
@@ -10,14 +11,20 @@ namespace Shinrai.Entity
         private Vector2 _moveDirection;
         private int _isRunningAnimBool = Animator.StringToHash("is_running");
         
-        public void Initialize()
+        private StatComponent _statComponent;
+        
+        public void Initialize(StatComponent statComponent)
         {
             ServiceLocator.GetService<InputService>().MoveInputCallback += OnReceiveMoveInput;
+            _statComponent = statComponent;
+            _speed = _statComponent.GetBase(StatTarget.MoveSpeed);
+            _statComponent.OnStatChanged += OnStatChanged;
         }
-
+        
         public void CleanUp()
         {
             ServiceLocator.GetService<InputService>().MoveInputCallback -= OnReceiveMoveInput;
+            _statComponent.OnStatChanged -= OnStatChanged;
         }
 
         private void FixedUpdate()
@@ -31,6 +38,11 @@ namespace Shinrai.Entity
         {
             _moveDirection = input;
             _animator.SetBool(_isRunningAnimBool, input.magnitude > 0.1f);
+        }
+        
+        private void OnStatChanged(StatComponent.StatChangeEvent obj)
+        {
+            
         }
     }
 }

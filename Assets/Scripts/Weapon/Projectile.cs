@@ -34,10 +34,14 @@ namespace Shinrai.Weapon
             }
         }
 
-        public void Spawn(EntityController owner)
+        public void Spawn(EntityController owner, float minDamage, float maxDamage)
         {
             _isActive = true;
             _damageComponent.AssignOwner(owner);
+            if (minDamage != 0 && maxDamage != 0)
+            {
+                _damageComponent.SetDamage(minDamage, maxDamage);
+            }
             gameObject.SetActive(true);
             _travelDistance = 0;
             _startPosition = transform.position;

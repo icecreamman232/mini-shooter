@@ -1,16 +1,19 @@
 using Shinrai.Core;
 using Shinrai.Entity;
+using Shinrai.Modifiers;
 
 namespace Shinrai.Weapon
 {
     public class PlayerWeapon : Weapon
     {
         private InputService _inputService;
+        private StatComponent _statComponent;
         
-        public override void Initialize(EntityController owner)
+        public void Initialize(EntityController owner, StatComponent statComponent)
         {
             _inputService = ServiceLocator.GetService<InputService>();
             _inputService.ShootInputCallback += OnShootInput;
+            _statComponent = statComponent;
             base.Initialize(owner);
         }
 
@@ -23,7 +26,9 @@ namespace Shinrai.Weapon
         private void OnShootInput()
         {
             var shootDirection = CalculateAimDirection(_inputService.GetWorldMousePosition());
-            Shoot(shootDirection);
+            Shoot(shootDirection, 
+                _statComponent.GetFinal(StatTarget.MinDamage), 
+                _statComponent.GetFinal(StatTarget.MaxDamage));
         }
     }
 }

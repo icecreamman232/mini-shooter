@@ -10,7 +10,12 @@ namespace Shinrai.Weapon
         [SerializeField] private float _minDamage;
         [SerializeField] private float _maxDamage;
         private EntityController _owner;
-        
+
+        public void SetDamage(float minDamage, float maxDamage)
+        {
+            _minDamage = minDamage;
+            _maxDamage = maxDamage;
+        }
 
         public virtual bool HandleCollision(Collider2D target)
         {

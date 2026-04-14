@@ -24,11 +24,12 @@ namespace Shinrai.Entity
 
         public void Initialize()
         {
-            _playerInventory.Initialize();
-            _playerMovement.Initialize();
-            _playerHealth.Initialize();
-            _playerWeapon.Initialize(this);
             _statComponent.Initialize(this);
+            _playerInventory.Initialize();
+            _playerMovement.Initialize(_statComponent);
+            _playerHealth.Initialize(_statComponent);
+            _playerWeapon.Initialize(this, _statComponent);
+            
             
             ServiceLocator.GetService<CameraController>().SetPlayer(transform);
             ServiceLocator.GetService<CameraController>().SetActive(true);

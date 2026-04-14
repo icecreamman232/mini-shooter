@@ -6,7 +6,7 @@ namespace Shinrai.Entity
 {
     public class PlayerHealth : EntityHealth
     {
-        [SerializeField] private StatComponent _statComponent;
+        private StatComponent _statComponent;
         private PlayerHealthChangedEvent _playerHealthChangedEvent;
 
         private void OnDestroy()
@@ -20,13 +20,17 @@ namespace Shinrai.Entity
             TakeDamage(10, null);
         }
         
-        public override void Initialize()
+        public void Initialize(StatComponent statComponent)
         {
-            base.Initialize();
+            
             _playerHealthChangedEvent = new PlayerHealthChangedEvent(_currentHealth, _maxHealth);
             UpdateHealthBar();
+            _statComponent = statComponent;
+            _maxHealth = _statComponent.GetBase(StatTarget.MaxHP);
             _statComponent.OnStatChanged += OnStatChanged;
+            base.Initialize();
         }
+        
         
         protected override void UpdateHealthBar()
         {
