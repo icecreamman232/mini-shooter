@@ -14,7 +14,6 @@ namespace Shinrai.Modifiers
         private Dictionary<StatTarget, bool> _markDirtyStatTargets = new();
         private List<IModifierOperationStrategy> _modifierOperationStrategies;
         private Dictionary<ModifierOperationType, List<float>> _passScratch = new();
-        private Dictionary<ModifierOperationType, List<ModifierInstance>> _modifierInstancesByOperation = new();
 
         private void Start()
         {
@@ -31,8 +30,6 @@ namespace Shinrai.Modifiers
             _passScratch[ModifierOperationType.Flat] = new List<float>();
             _passScratch[ModifierOperationType.AddPercent] = new List<float>();
             _passScratch[ModifierOperationType.MultiplyPercent] = new List<float>();
-            
-            _modifierInstancesByOperation = new();
         }
 
         public void AddModifier(ModifierInstance modifierInstance)
@@ -56,19 +53,16 @@ namespace Shinrai.Modifiers
 
         private void RecalculateStats()
         {
-            _modifierInstancesByOperation.Clear();
-
             foreach (var dirtyStatTarget in _markDirtyStatTargets)
             {
                 var modifiers = _modifiers[dirtyStatTarget.Key];
+                foreach (var list in _passScratch.Values)
+                    list.Clear();
+                
+                
                 foreach (var modifier in modifiers)
                 {
                     var operation = modifier.Definition.OperationType;
-                    if (!_modifierInstancesByOperation.ContainsKey(operation))
-                    {
-                        _modifierInstancesByOperation.Add(operation, new List<ModifierInstance>(){modifier});
-                    }
-                    _modifierInstancesByOperation[operation].Add(modifier);
                     _passScratch[operation].Add(modifier.RolledValue);
                 }
 

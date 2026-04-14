@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Core.ItemService
   _itemDefinitions:
   - {fileID: 11400000, guid: faf713c54a367ba40ba32017266b2e12, type: 2}
+  - {fileID: 11400000, guid: f75ebf0775c2e8e4d934ccd5612f258f, type: 2}
 --- !u!1 &317123598
 GameObject:
   m_ObjectHideFlags: 0

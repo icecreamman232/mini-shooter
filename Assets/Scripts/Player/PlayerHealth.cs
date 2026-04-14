@@ -6,6 +6,11 @@ namespace Shinrai.Entity
 {
     public class PlayerHealth : EntityHealth
     {
+        [Header("Player")]
+        /// <summary>
+        /// In divine mode, player will not take damage from enemies
+        /// </summary>
+        [SerializeField] private bool _isDivineMode = false;
         private StatComponent _statComponent;
         private PlayerHealthChangedEvent _playerHealthChangedEvent;
 
@@ -30,8 +35,14 @@ namespace Shinrai.Entity
             _statComponent.OnStatChanged += OnStatChanged;
             base.Initialize();
         }
-        
-        
+
+        public override void TakeDamage(float damage, EntityController source)
+        {
+            if (_isDivineMode) return;
+            base.TakeDamage(damage, source);
+        }
+
+
         protected override void UpdateHealthBar()
         {
             base.UpdateHealthBar();

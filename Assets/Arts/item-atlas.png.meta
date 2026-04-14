@@ -143,7 +143,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -152,6 +152,28 @@ TextureImporter:
       bones: []
       spriteID: 201c1dc66c11a9f49bdb566989452bd7
       internalID: -438686071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item-claw-of-attack
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 12
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d423ac965e34a49bf611cc8fa876ec
+      internalID: -1417634720
       vertices: []
       indices: 
       edges: []
@@ -170,6 +192,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      item-claw-of-attack: -1417634720
       item-straw-hat: 753072640299626105
       item-treasure-chest: -438686071
   mipmapLimitGroupName: 

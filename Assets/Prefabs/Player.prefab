@@ -336,6 +336,7 @@ MonoBehaviour:
   _currentHealth: 0
   _maxHealth: 100
   _invulnerableTime: 0.3
+  _isDivineMode: 1
 --- !u!114 &-6260939767814385123
 MonoBehaviour:
   m_ObjectHideFlags: 0
