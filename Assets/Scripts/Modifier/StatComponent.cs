@@ -11,6 +11,8 @@ namespace Shinrai.Modifiers
         [SerializeField] private CharacterData _characterData;
         private Dictionary<StatTarget, float> _baseValues;
         private Dictionary<StatTarget, float> _finalValues;
+        
+        public IEnumerable<StatTarget> AllStats => _baseValues.Keys;
 
         public event Action<StatChangeEvent> OnStatChanged;
         

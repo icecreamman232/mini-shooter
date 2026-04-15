@@ -14,7 +14,9 @@ namespace Shinrai.Modifiers
         private Dictionary<StatTarget, bool> _markDirtyStatTargets = new();
         private List<IModifierOperationStrategy> _modifierOperationStrategies;
         private Dictionary<ModifierOperationType, List<float>> _passScratch = new();
-
+        private ConditionEvaluator _conditionEvaluator;
+        
+        
         private void Start()
         {
             //This order of operations must be respected.
@@ -30,6 +32,8 @@ namespace Shinrai.Modifiers
             _passScratch[ModifierOperationType.Flat] = new List<float>();
             _passScratch[ModifierOperationType.AddPercent] = new List<float>();
             _passScratch[ModifierOperationType.MultiplyPercent] = new List<float>();
+            
+            _conditionEvaluator = new ConditionEvaluator();
         }
 
         public void AddModifier(ModifierInstance modifierInstance)
@@ -44,11 +48,19 @@ namespace Shinrai.Modifiers
             {
                 _modifiers.Add(modifierInstance.Definition.StatTarget, new List<ModifierInstance> {modifierInstance});
             }
-            
-            //Save the stat target to be recalculated
-            _markDirtyStatTargets[modifierInstance.Definition.StatTarget] = true;
+
+            if (IsConditionMet())
+            {
+                //Save the stat target to be recalculated
+                _markDirtyStatTargets[modifierInstance.Definition.StatTarget] = true;
+            }
             
             RecalculateStats();
+        }
+
+        private bool IsConditionMet()
+        {
+            return true;
         }
 
         private void RecalculateStats()

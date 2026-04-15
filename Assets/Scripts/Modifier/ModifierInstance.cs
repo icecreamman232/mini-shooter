@@ -44,6 +44,7 @@ namespace Shinrai.Modifiers
     public class ModifierRecord
     {
         public ModifierDefinition Definition;
+        
         public ValueSource Source;
     }
     
