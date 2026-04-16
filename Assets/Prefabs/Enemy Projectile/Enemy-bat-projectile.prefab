@@ -156,8 +156,8 @@ MonoBehaviour:
   _damageableLayers:
     serializedVersion: 2
     m_Bits: 320
-  _minDamage: 20
-  _maxDamage: 30
+  _minDamage: 10
+  _maxDamage: 15
 --- !u!61 &3958048921742624376
 BoxCollider2D:
   m_ObjectHideFlags: 0

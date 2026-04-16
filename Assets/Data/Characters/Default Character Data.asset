@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723497450340c6b4eaae413c795590c7, type: 3}
   m_Name: Default Character Data
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Data.CharacterData
-  _defaultHealth: 100
+  _defaultHealth: 50
   _defaultSpeed: 6
-  _defaultMinDamage: 35
-  _defaultMaxDamage: 50
+  _defaultMinDamage: 15
+  _defaultMaxDamage: 20
