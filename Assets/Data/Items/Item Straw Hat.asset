@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Items.ItemDefinition
   _rarity: 0
   _displayName: Straw Hat
-  _description: A hat made with straw. Its very light.
+  _description: + 30 max HP
   _icon: {fileID: 753072640299626105, guid: 91b413ade94fcc34d8747ea55d7482ea, type: 3}
   _modifierRecords:
   - Definition: {fileID: 11400000, guid: f0a7fd07988246b4181de646a737f335, type: 2}

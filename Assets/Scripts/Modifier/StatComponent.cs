@@ -70,7 +70,6 @@ namespace Shinrai.Modifiers
         public void SetFinal(StatTarget stat, float value, bool isRecalculated = false)
         {
             _finalValues[stat] = value;
-            Debug.Log($"Stat {stat} set to {value}");
             OnStatChanged?.Invoke( new StatChangeEvent(stat, _baseValues[stat], value));
         }
     }

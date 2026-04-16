@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Shinrai.Modifiers
 {
     public enum StatTarget
@@ -26,15 +25,6 @@ namespace Shinrai.Modifiers
         public float MinValue;
         public float MaxValue;
         public string Formula;
-        
-        public static ValueSource FromFlat(float flatValue) 
-            => new ValueSource { Mode = ValueSourceMode.Flat, FlatValue = flatValue };
-        
-        public static ValueSource FromRange(float minValue, float maxValue) 
-            => new ValueSource { Mode = ValueSourceMode.Range, MinValue = minValue, MaxValue = maxValue };
-        
-        public static ValueSource FromFormula(string formula) 
-            => new ValueSource { Mode = ValueSourceMode.Formula, Formula = formula };
     }
 
     /// <summary>

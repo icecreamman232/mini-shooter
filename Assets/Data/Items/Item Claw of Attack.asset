@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Items.ItemDefinition
   _rarity: 0
   _displayName: Claw of Attack
-  _description: Increase 5 damage if health below 50%
+  _description: Increase 20 damage if health below 30%
   _icon: {fileID: -1417634720, guid: 91b413ade94fcc34d8747ea55d7482ea, type: 3}
   _modifierRecords:
   - Definition: {fileID: 11400000, guid: 716bb2f08d95cc24297fc503057c0518, type: 2}
     Source:
       Mode: 0
-      FlatValue: 5
+      FlatValue: 20
       MinValue: 0
       MaxValue: 0
       Formula: 
@@ -29,7 +29,7 @@ MonoBehaviour:
   - Definition: {fileID: 11400000, guid: e887fba90c1ed1945887fec38aa2739b, type: 2}
     Source:
       Mode: 0
-      FlatValue: 5
+      FlatValue: 20
       MinValue: 0
       MaxValue: 0
       Formula: 
@@ -45,4 +45,4 @@ MonoBehaviour:
     - rid: 4789895227648508020
       type: {class: HealthBelowNode, ns: Shinrai.Modifiers, asm: Assembly-CSharp}
       data:
-        Threshold: 0.5
+        Threshold: 0.3
