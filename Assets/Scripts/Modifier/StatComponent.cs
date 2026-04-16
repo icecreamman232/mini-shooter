@@ -54,10 +54,10 @@ namespace Shinrai.Modifiers
         public float GetBase(StatTarget stat) => _baseValues[stat];
         public float GetFinal(StatTarget stat) => _finalValues[stat];
         
-        public void SetFinal(StatTarget stat, float value)
+        public void SetFinal(StatTarget stat, float value, bool isRecalculated = false)
         {
             _finalValues[stat] = value;
-            OnStatChanged?.Invoke(new StatChangeEvent(stat, _baseValues[stat], value));
+            OnStatChanged?.Invoke( new StatChangeEvent(stat, _baseValues[stat], value));
         }
     }
 }

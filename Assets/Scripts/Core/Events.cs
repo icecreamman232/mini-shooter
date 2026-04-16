@@ -1,4 +1,6 @@
-﻿namespace Shinrai.Core
+﻿using Shinrai.Modifiers;
+
+namespace Shinrai.Core
 {
     //============== PLAYER HEALTH CHANGE================
     public struct PlayerHealthChangedEvent
@@ -39,5 +41,17 @@
     public struct TreasureChestPromptEvent
     {
         public bool IsPromptVisible;
+    }
+    
+    public struct ExternalStateChangeEvent
+    {
+        public StatTarget StatTarget;
+        public float Value;
+
+        public ExternalStateChangeEvent(StatTarget statTarget, float value)
+        {
+            StatTarget = statTarget;
+            Value = value;
+        }
     }
 }

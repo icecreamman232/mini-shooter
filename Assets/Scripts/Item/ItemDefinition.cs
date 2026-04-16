@@ -12,7 +12,6 @@ namespace Shinrai.Items
         [SerializeField] private string _description;
         [SerializeField] private Sprite _icon;
         [SerializeField] private List<ModifierRecord> _modifierRecords;
-        
         public List<ModifierRecord> ModifierRecords => _modifierRecords;
         public Rarity Rarity => _rarity;
         public string DisplayName => _displayName;

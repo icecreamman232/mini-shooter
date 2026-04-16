@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Shinrai.Modifiers
@@ -44,8 +46,33 @@ namespace Shinrai.Modifiers
     public class ModifierRecord
     {
         public ModifierDefinition Definition;
-        
         public ValueSource Source;
+        [SerializeReference]
+        public List<ConditionNode> Conditions;
+        
+        public IConditionSpecification BuildCondition()
+        {
+            if (Conditions == null || Conditions.Count == 0) return AlwaysTrueSpecification.Instance;
+            
+            IConditionSpecification result = Conditions[0].ToSpec();
+            for (int i= 1 ;i < Conditions.Count; i++)
+            {
+                result = result.And(Conditions[i].ToSpec());
+            }
+            return result;
+        }
+
+        public string GetConditionPreview()
+        {
+            if(Conditions == null || Conditions.Count == 0) return "Always Active";
+            
+            var parts = new List<string>();
+            foreach (var condition in Conditions)
+            {
+                parts.Add(condition.GetSummary());
+            }
+            return string.Join(" AND ", parts);
+        }
     }
     
     
@@ -58,6 +85,7 @@ namespace Shinrai.Modifiers
     {
         public ModifierDefinition Definition;
         public float RolledValue;
+        public IConditionSpecification CompiledCondition;
 
         public ModifierInstance(ModifierRecord record)
         {
@@ -69,6 +97,8 @@ namespace Shinrai.Modifiers
                 ValueSourceMode.Formula => UnityEngine.Random.Range(record.Source.MinValue, record.Source.MaxValue),
                 _ => throw new ArgumentOutOfRangeException()
             };
+            
+            CompiledCondition = record.BuildCondition();
         }
     }
 }

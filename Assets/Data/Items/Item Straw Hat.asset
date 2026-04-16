@@ -24,3 +24,7 @@ MonoBehaviour:
       MinValue: 0
       MaxValue: 0
       Formula: 
+    Conditions: []
+  references:
+    version: 2
+    RefIds: []

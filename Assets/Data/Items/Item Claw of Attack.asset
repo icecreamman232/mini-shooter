@@ -24,6 +24,8 @@ MonoBehaviour:
       MinValue: 0
       MaxValue: 0
       Formula: 
+    Conditions:
+    - rid: 4789895219534889069
   - Definition: {fileID: 11400000, guid: e887fba90c1ed1945887fec38aa2739b, type: 2}
     Source:
       Mode: 0
@@ -31,3 +33,16 @@ MonoBehaviour:
       MinValue: 0
       MaxValue: 0
       Formula: 
+    Conditions:
+    - rid: 4789895219534889070
+  references:
+    version: 2
+    RefIds:
+    - rid: 4789895219534889069
+      type: {class: HealthBelowNode, ns: Shinrai.Modifiers, asm: Assembly-CSharp}
+      data:
+        Threshold: 0.5
+    - rid: 4789895219534889070
+      type: {class: HealthBelowNode, ns: Shinrai.Modifiers, asm: Assembly-CSharp}
+      data:
+        Threshold: 0.5

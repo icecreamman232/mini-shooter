@@ -27,13 +27,12 @@ namespace Shinrai.Entity
         
         public void Initialize(StatComponent statComponent)
         {
-            
             _playerHealthChangedEvent = new PlayerHealthChangedEvent(_currentHealth, _maxHealth);
-            UpdateHealthBar();
             _statComponent = statComponent;
             _maxHealth = _statComponent.GetBase(StatTarget.MaxHP);
             _statComponent.OnStatChanged += OnStatChanged;
             base.Initialize();
+            UpdateHealthBar();
         }
 
         public override void TakeDamage(float damage, EntityController source)
@@ -49,6 +48,7 @@ namespace Shinrai.Entity
             _playerHealthChangedEvent.CurrentHealth = _currentHealth;
             _playerHealthChangedEvent.MaxHealth = _maxHealth;
             EventBus.Emit(_playerHealthChangedEvent);
+            EventBus.Emit(new ExternalStateChangeEvent(StatTarget.CurrentHP, _currentHealth));
         }
         
         private void OnStatChanged(StatComponent.StatChangeEvent eventArgs)
