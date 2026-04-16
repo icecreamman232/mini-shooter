@@ -13,6 +13,8 @@ namespace Shinrai.Levels
 
         private Item _assignedItem;
         private bool _isSelected;
+        
+        public Action<ItemPicker> OnPickedUp;
 
         private void Awake()
         {
@@ -47,7 +49,8 @@ namespace Shinrai.Levels
             if (!_isSelected) return;
             var playerController = ServiceLocator.GetService<InGameDataManager>().PlayerController;
             playerController.PlayerInventory.AddItem(_assignedItem);
-            
+            OnPickedUp?.Invoke(this);
+            ServiceLocator.GetService<ItemService>().RemoveItem(_assignedItem.Definition);
             Destroy(gameObject);
         }
 

@@ -21,11 +21,17 @@ namespace Shinrai.Core
     {
         CreatedPlayer,
         GameStarted,
+        LoadNextRoom,
     }
     
     public struct GameEventChanged
     {
         public GameEvent GameEvent;
+        
+        public GameEventChanged(GameEvent gameEvent)
+        {
+            GameEvent = gameEvent;
+        }
     }
     
     //===================================================

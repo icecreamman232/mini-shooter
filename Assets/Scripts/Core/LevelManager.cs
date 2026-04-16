@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Shinrai.Entity;
+using Shinrai.Items;
 using Shinrai.Levels;
 using UnityEngine;
 
@@ -12,23 +13,25 @@ namespace Shinrai.Core
         [SerializeField] private Transform _roomParent;
         [SerializeField] private Room[] _roomPrefabs;
         [SerializeField] private EnemyController[] _enemyPrefabs;
-        
+
         private PlayerController _player;
         private HashSet<EnemyController> _spawnedEnemies;
         private Room _currentRoom;
+        private int _maxItemNumber = 3;
         
         public PlayerController Player => _player;
         
         public void Install()
         {
+            EventBus.Subscribe<GameEventChanged>(OnGameEventChanged);
             InitializeFirstLevel();
         }
 
         public void Uninstall()
         {
-           
+            EventBus.Unsubscribe<GameEventChanged>(OnGameEventChanged);
         }
-
+        
         private void InitializeFirstLevel()
         {
             CreateRoom();
@@ -106,8 +109,16 @@ namespace Shinrai.Core
         {
             _spawnedEnemies.Remove(controller);
             controller.Health.OnEnemyDeath -= OnEnemyDead;
-            //All enemies area dead, we load next level
+            //All enemies area dead,spawn rewards
             if (_spawnedEnemies.Count == 0)
+            {
+                _currentRoom.SpawnItems();
+            }
+        }
+        
+        private void OnGameEventChanged(GameEventChanged eventArgs)
+        {
+            if (eventArgs.GameEvent == GameEvent.LoadNextRoom)
             {
                 InitializeNextLevel();
             }

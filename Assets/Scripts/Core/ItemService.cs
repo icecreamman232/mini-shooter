@@ -8,7 +8,7 @@ namespace Shinrai.Core
 {
     public class ItemService : MonoBehaviour, IGameService, IBootStrap
     {
-        [SerializeField] private ItemDefinition[] _itemDefinitions;
+        [SerializeField] private List<ItemDefinition> _itemDefinitions;
         
         public void Install()
         {
@@ -19,9 +19,13 @@ namespace Shinrai.Core
         {
             ServiceLocator.UnregisterService<ItemService>();
         }
+
+        public void RemoveItem(ItemDefinition itemDefinition)
+        {
+            _itemDefinitions.Remove(itemDefinition);
+        }
         
         public List<Item> GetItemByRarity(Rarity rarity) => GetItemsByFilter(itemDef => itemDef.Rarity == rarity);
-
         
         private List<Item> GetItemsByFilter(Func<ItemDefinition, bool> filter)
         {
