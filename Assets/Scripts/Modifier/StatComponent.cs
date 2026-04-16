@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Shinrai.Core;
 using Shinrai.Data;
 using Shinrai.Entity;
 using UnityEngine;
@@ -49,14 +50,27 @@ namespace Shinrai.Modifiers
                 [StatTarget.MinDamage] = _characterData.DefaultMinDamage,
                 [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage
             };
+            
+            EventBus.Subscribe<ExternalStateChangeEvent>(OnExternalStateChanged);
         }
-        
+
+        private void OnDestroy()
+        {
+            EventBus.Unsubscribe<ExternalStateChangeEvent>(OnExternalStateChanged);
+        }
+
+        private void OnExternalStateChanged(ExternalStateChangeEvent eventArgs)
+        {
+            _finalValues[eventArgs.StatTarget] = eventArgs.Value;
+        }
+
         public float GetBase(StatTarget stat) => _baseValues[stat];
         public float GetFinal(StatTarget stat) => _finalValues[stat];
         
         public void SetFinal(StatTarget stat, float value, bool isRecalculated = false)
         {
             _finalValues[stat] = value;
+            Debug.Log($"Stat {stat} set to {value}");
             OnStatChanged?.Invoke( new StatChangeEvent(stat, _baseValues[stat], value));
         }
     }

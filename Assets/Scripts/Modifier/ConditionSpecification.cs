@@ -25,6 +25,7 @@ namespace Shinrai.Modifiers
     public interface IConditionSpecification
     {
         bool IsMet(EvaluationContext context);
+        IEnumerable<StatTarget> GetDependentStats();
     }
     
     
@@ -43,6 +44,16 @@ namespace Shinrai.Modifiers
         }
         
         public bool IsMet(EvaluationContext context) { return _left.IsMet(context) && _right.IsMet(context); }
+
+        public IEnumerable<StatTarget> GetDependentStats()
+        {
+            var set = new HashSet<StatTarget>(_left.GetDependentStats());
+            foreach (var dep in _right.GetDependentStats())
+            {
+                set.Add(dep);
+            }
+            return set;
+        }
     }
 
     public sealed class OrConditionSpecification : IConditionSpecification
@@ -60,6 +71,16 @@ namespace Shinrai.Modifiers
         {
             return _left.IsMet(context) || _right.IsMet(context);
         }
+        
+        public IEnumerable<StatTarget> GetDependentStats()
+        {
+            var set = new HashSet<StatTarget>(_left.GetDependentStats());
+            foreach (var dep in _right.GetDependentStats())
+            {
+                set.Add(dep);
+            }
+            return set;
+        }
     }
     
     public sealed class NotConditionSpecification : IConditionSpecification
@@ -76,6 +97,11 @@ namespace Shinrai.Modifiers
         {
             return !_condition.IsMet(context);
         }
+        
+        public IEnumerable<StatTarget> GetDependentStats()
+        {
+            return _condition.GetDependentStats();
+        }
     }
     
     //====== SIMPLE CONDITION SPECIFICATIONS ======//
@@ -85,6 +111,11 @@ namespace Shinrai.Modifiers
         public static readonly AlwaysTrueSpecification Instance = new AlwaysTrueSpecification();
         private AlwaysTrueSpecification() { }
         public bool IsMet(EvaluationContext ctx) => true;
+        
+        public IEnumerable<StatTarget> GetDependentStats()
+        {
+            yield break;
+        }
     }
     
     
@@ -102,6 +133,11 @@ namespace Shinrai.Modifiers
             var ratio = context.GetStat(StatTarget.CurrentHP) / maxHealth;
             return ratio < _threshold;
         }
+        
+        public IEnumerable<StatTarget> GetDependentStats()
+        {
+            yield return StatTarget.CurrentHP;
+        }
     }
 
     public sealed class HealthAboveThresholdSpec : IConditionSpecification
@@ -115,6 +151,11 @@ namespace Shinrai.Modifiers
             if (maxHealth == 0) return false;
             var ratio = context.GetStat(StatTarget.CurrentHP) / maxHealth;
             return ratio > _threshold;
+        }
+
+        public IEnumerable<StatTarget> GetDependentStats()
+        {
+            yield return StatTarget.CurrentHP;
         }
     }
     

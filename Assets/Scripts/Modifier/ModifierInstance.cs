@@ -100,5 +100,14 @@ namespace Shinrai.Modifiers
             
             CompiledCondition = record.BuildCondition();
         }
+        
+        public IEnumerable<StatTarget> GetConditionDependencies()
+        {
+            if(CompiledCondition == null) yield break;
+            foreach (var dependency in CompiledCondition.GetDependentStats())
+            {
+                yield return dependency;
+            }
+        }
     }
 }
