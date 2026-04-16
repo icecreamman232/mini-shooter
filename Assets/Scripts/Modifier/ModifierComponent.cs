@@ -54,36 +54,15 @@ namespace Shinrai.Modifiers
         {
             _markDirtyStatTargets.Clear();
 
-            if (_modifiers.ContainsKey(modifierInstance.Definition.StatTarget))
-            {
-                _modifiers[modifierInstance.Definition.StatTarget].Add(modifierInstance);
-            }
-            else
-            {
-                _modifiers.Add(modifierInstance.Definition.StatTarget, new List<ModifierInstance> { modifierInstance });
-            }
+            Util.AddToDictionaryList(_modifiers, modifierInstance.Definition.StatTarget, modifierInstance);
 
             if (modifierInstance.CompiledCondition != null)
             {
-                if (_conditionalModifiers.ContainsKey(modifierInstance.Definition.StatTarget))
-                {
-                    _conditionalModifiers[modifierInstance.Definition.StatTarget].Add(modifierInstance);
-                }
-                else
-                {
-                    _conditionalModifiers.Add(modifierInstance.Definition.StatTarget, new List<ModifierInstance> { modifierInstance });
-                }
+                Util.AddToDictionaryList(_conditionalModifiers, modifierInstance.Definition.StatTarget, modifierInstance);
 
                 foreach (var dependency in modifierInstance.GetConditionDependencies())
                 {
-                    if (_conditionDependencyIndex.ContainsKey(dependency))
-                    {
-                        _conditionDependencyIndex[dependency].Add(modifierInstance);
-                    }
-                    else
-                    {
-                        _conditionDependencyIndex.Add(dependency, new List<ModifierInstance> { modifierInstance });
-                    }
+                    Util.AddToDictionaryList(_conditionDependencyIndex, dependency, modifierInstance);
                 }
 
                 _lastConditionState[modifierInstance] = IsConditionMet(modifierInstance);
@@ -97,7 +76,7 @@ namespace Shinrai.Modifiers
                 _markDirtyStatTargets[modifierInstance.Definition.StatTarget] = true;
             }
 
-            CalculateStats(_markDirtyStatTargets);
+            CalculateStats(_markDirtyStatTargets.Keys);
         }
 
         private bool IsConditionMet(ModifierInstance modifierInstance)
@@ -108,7 +87,6 @@ namespace Shinrai.Modifiers
 
         private void OnStatChangedExternally(ExternalStateChangeEvent eventArgs)
         {
-            Debug.Log($"Stat changed externally: {eventArgs.StatTarget}");
             _markDirtyStatForExternal.Clear();
 
             if (_conditionDependencyIndex.ContainsKey(eventArgs.StatTarget))
@@ -116,15 +94,10 @@ namespace Shinrai.Modifiers
                 foreach (var modifier in _conditionDependencyIndex[eventArgs.StatTarget])
                 {
                     bool newConditionState = IsConditionMet(modifier);
-                    if (newConditionState)
-                    {
-                        Debug.Log($"Condition stat target {modifier.Definition.StatTarget} is : {newConditionState}");
-                    }
-                    
+
                     if (_lastConditionState.TryGetValue(modifier, out bool oldConditionState) && oldConditionState != newConditionState)
                     {
                         _lastConditionState[modifier] = newConditionState;
-                        Debug.Log($"Condition change for stat target {modifier.Definition.StatTarget}");
                         _markDirtyStatForExternal[modifier.Definition.StatTarget] = true;
                     }
                 }
@@ -132,7 +105,6 @@ namespace Shinrai.Modifiers
 
             if (!_recalculationScheduled && _markDirtyStatForExternal.Count > 0)
             {
-                Debug.Log("Scheduling recalculation");
                 _recalculationScheduled = true;
                 StartCoroutine(DeferredRecalculation());
             }
@@ -141,18 +113,18 @@ namespace Shinrai.Modifiers
         private IEnumerator DeferredRecalculation()
         {
             yield return null;
-            CalculateStats(_markDirtyStatForExternal);
+            CalculateStats(_markDirtyStatForExternal.Keys);
             _recalculationScheduled = false;
         }
 
-        private void CalculateStats(Dictionary<StatTarget, bool> markDirtyStatTarget)
+        private void CalculateStats(IEnumerable<StatTarget> markDirtyStatTarget)
         {
             foreach (var dirtyStatTarget in markDirtyStatTarget)
             {
-                if (!_modifiers.ContainsKey(dirtyStatTarget.Key))
+                if (!_modifiers.ContainsKey(dirtyStatTarget))
                     continue;
 
-                var modifiers = _modifiers[dirtyStatTarget.Key];
+                var modifiers = _modifiers[dirtyStatTarget];
                 foreach (var list in _passScratch.Values)
                     list.Clear();
 
@@ -173,15 +145,14 @@ namespace Shinrai.Modifiers
                     }
                 }
 
-                var finalValue = _statComponent.GetBase(dirtyStatTarget.Key);
+                var finalValue = _statComponent.GetBase(dirtyStatTarget);
 
                 foreach (var operationStrat in _modifierOperationStrategies)
                 {
                     finalValue = operationStrat.Apply(finalValue, _passScratch[operationStrat.OperationType]);
                 }
-
-                Debug.Log($"Calculated final value for {dirtyStatTarget.Key}: {finalValue}");
-                _statComponent.SetFinal(dirtyStatTarget.Key, finalValue);
+                
+                _statComponent.SetFinal(dirtyStatTarget, finalValue);
             }
         }
     }

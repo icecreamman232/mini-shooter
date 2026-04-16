@@ -37,6 +37,17 @@ namespace Shinrai.Core
         {
             return array.Length == 0 ? default : array[Random.Range(0, array.Length)];
         }
-        
+
+
+        public static void AddToDictionaryList<TKey, TValue>(Dictionary<TKey, List<TValue>> dict, TKey key, TValue value)
+        {
+            if (!dict.TryGetValue(key, out var list))
+            {
+                list = new List<TValue>();
+                dict[key] = list;
+            }
+
+            list.Add(value);
+        }
     }
 }

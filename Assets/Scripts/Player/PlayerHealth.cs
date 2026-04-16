@@ -22,7 +22,20 @@ namespace Shinrai.Entity
         [ContextMenu("Test Damage")]
         public void TestDamage()
         {
-            TakeDamage(10, null);
+            base.TakeDamage(_maxHealth/2, null);
+        }
+
+        [ContextMenu("Test Damage")]
+        private void Damage()
+        {
+            TakeDamage(_maxHealth * 0.7f, null);
+        }
+
+        [ContextMenu("Test Heal")]
+        private void Heal()
+        {
+            _currentHealth = _maxHealth;
+            UpdateHealthBar();
         }
         
         public void Initialize(StatComponent statComponent)
