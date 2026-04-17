@@ -14,6 +14,7 @@ namespace Shinrai.Weapon
             _inputService = ServiceLocator.GetService<InputService>();
             _inputService.ShootInputCallback += OnShootInput;
             _statComponent = statComponent;
+            _delayBetweenShots = Util.FireRateToDelay(_statComponent.GetFinal(StatTarget.FireRate));
             base.Initialize(owner);
         }
 
@@ -26,6 +27,7 @@ namespace Shinrai.Weapon
         private void OnShootInput()
         {
             var shootDirection = CalculateAimDirection(_inputService.GetWorldMousePosition());
+            _delayBetweenShots = Util.FireRateToDelay(_statComponent.GetFinal(StatTarget.FireRate));
             Shoot(shootDirection, 
                 _statComponent.GetFinal(StatTarget.MinDamage), 
                 _statComponent.GetFinal(StatTarget.MaxDamage));

@@ -9,10 +9,12 @@ namespace Shinrai.Data
         [SerializeField] private float _defaultSpeed;
         [SerializeField] private float _defaultMinDamage;
         [SerializeField] private float _defaultMaxDamage;
+        [SerializeField] private float _defaultFireRate;
         
         public float DefaultHealth => _defaultHealth;
         public float DefaultSpeed => _defaultSpeed;
         public float DefaultMinDamage => _defaultMinDamage;
         public float DefaultMaxDamage => _defaultMaxDamage;
+        public float DefaultFireRate => _defaultFireRate;
     }
 }

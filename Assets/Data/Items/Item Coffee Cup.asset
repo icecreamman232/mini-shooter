@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f2791392dbba141ac2379e87983bb9, type: 3}
+  m_Name: Item Coffee Cup
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Items.ItemDefinition
+  _rarity: 0
+  _displayName: Coffee Cup
+  _description: + 5 FireRate
+  _icon: {fileID: 516451746, guid: 91b413ade94fcc34d8747ea55d7482ea, type: 3}
+  _modifierRecords:
+  - Definition: {fileID: 11400000, guid: c39fb6f62b62d2f42b4cfe61cf3321f2, type: 2}
+    Source:
+      Mode: 0
+      FlatValue: 5
+      MinValue: 0
+      MaxValue: 0
+      Formula: 
+    Conditions: []
+  references:
+    version: 2
+    RefIds: []

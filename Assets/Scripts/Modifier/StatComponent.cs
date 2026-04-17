@@ -40,7 +40,8 @@ namespace Shinrai.Modifiers
                 [StatTarget.MaxHP] = _characterData.DefaultHealth,
                 [StatTarget.MoveSpeed] = _characterData.DefaultSpeed,
                 [StatTarget.MinDamage] = _characterData.DefaultMinDamage,
-                [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage
+                [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage,
+                [StatTarget.FireRate] = _characterData.DefaultFireRate,
             };
             _finalValues = new Dictionary<StatTarget, float>()
             {
@@ -48,7 +49,8 @@ namespace Shinrai.Modifiers
                 [StatTarget.MaxHP] = _characterData.DefaultHealth,
                 [StatTarget.MoveSpeed] = _characterData.DefaultSpeed,
                 [StatTarget.MinDamage] = _characterData.DefaultMinDamage,
-                [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage
+                [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage,
+                [StatTarget.FireRate] = _characterData.DefaultFireRate,
             };
             
             EventBus.Subscribe<ExternalStateChangeEvent>(OnExternalStateChanged);
@@ -69,8 +71,10 @@ namespace Shinrai.Modifiers
         
         public void SetFinal(StatTarget stat, float value, bool isRecalculated = false)
         {
+            value = Constant.CheckMax(stat, value);
+            value = Constant.CheckMin(stat, value);
             _finalValues[stat] = value;
-            OnStatChanged?.Invoke( new StatChangeEvent(stat, _baseValues[stat], value));
+            OnStatChanged?.Invoke( new StatChangeEvent(stat, _baseValues[stat], _finalValues[stat]));
         }
     }
 }

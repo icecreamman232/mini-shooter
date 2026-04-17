@@ -6,8 +6,8 @@ namespace Shinrai.Weapon
 {
     public class Weapon : MonoBehaviour
     {
-        [SerializeField] private ProjectilePool _projectilePool; 
-        [SerializeField] private float _delayBetweenShots;
+        [SerializeField] protected ProjectilePool _projectilePool; 
+        [SerializeField] protected float _delayBetweenShots;
 
         protected bool _canShoot = true;
         protected EntityController _owner;

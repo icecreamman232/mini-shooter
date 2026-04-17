@@ -16,3 +16,4 @@ MonoBehaviour:
   _defaultSpeed: 6
   _defaultMinDamage: 15
   _defaultMaxDamage: 20
+  _defaultFireRate: 65

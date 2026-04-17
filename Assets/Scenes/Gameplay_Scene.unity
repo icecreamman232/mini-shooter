@@ -168,6 +168,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f75ebf0775c2e8e4d934ccd5612f258f, type: 2}
   - {fileID: 11400000, guid: fc2ccca9acdb330418fdf69468263f7d, type: 2}
   - {fileID: 11400000, guid: d3ed8c584cd891e4b87f6e13ca4ff9c1, type: 2}
+  - {fileID: 11400000, guid: 284a61456fd228748b95fe97ea6c47b9, type: 2}
 --- !u!1 &317123598
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,9 +345,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.5625
-    width: 0
-    height: 1.125
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34

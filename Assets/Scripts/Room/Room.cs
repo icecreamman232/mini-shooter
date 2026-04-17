@@ -34,7 +34,7 @@ namespace Shinrai.Levels
             //1. Add shuffle to item list
             //2. Remove picked items from ItemService
             var itemList = ServiceLocator.GetService<ItemService>().GetItemByRarity(Rarity.Common);
-            
+            itemList.Shuffle();
             StartCoroutine(OnSpawningItems(itemList));
         }
 
