@@ -581,6 +581,7 @@ MonoBehaviour:
   _itemName: {fileID: 2337280486680915587}
   _itemDescription: {fileID: 1307659836818504704}
   _itemUICanvasGroup: {fileID: 783825276840316564}
+  _commonColorData: {fileID: 11400000, guid: 2702753caf838ca48b2c19d6f7d0e718, type: 2}
 --- !u!114 &4954031423527615882
 MonoBehaviour:
   m_ObjectHideFlags: 0

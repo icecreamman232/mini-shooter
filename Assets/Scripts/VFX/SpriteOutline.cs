@@ -18,6 +18,11 @@ namespace Shinrai.VFX
             _materialPropertyBlock = new MaterialPropertyBlock();
         }
 
+        public void SetOutlineColor(Color color)
+        {
+            _outlineColor = color;
+        }
+        
         public void ShowOutline()
         {
             _spriteRenderer.GetPropertyBlock(_materialPropertyBlock);

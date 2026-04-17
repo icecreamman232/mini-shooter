@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Shinrai.Core;
+using Shinrai.Data;
 using Shinrai.Items;
 using Shinrai.VFX;
 using TMPro;
@@ -16,6 +17,7 @@ namespace Shinrai.Levels
         [SerializeField] private TextMeshProUGUI _itemName;
         [SerializeField] private TextMeshProUGUI _itemDescription;
         [SerializeField] private CanvasGroup _itemUICanvasGroup;
+        [SerializeField] private CommonColorData _commonColorData;
 
         private Item _assignedItem;
         private bool _isSelected;
@@ -56,9 +58,11 @@ namespace Shinrai.Levels
 
         public void AssignItem(Item item)
         {
+            _outline.SetOutlineColor(_commonColorData.GetColorByRarity(item.Definition.Rarity));
             _assignedItem = item;
             _itemIcon.sprite = item.Definition.Icon;
             _itemName.text = item.Definition.DisplayName;
+            _itemName.color = _commonColorData.GetColorByRarity(item.Definition.Rarity);
             _itemDescription.text = item.Definition.Description;
         }
 

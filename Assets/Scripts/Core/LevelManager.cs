@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
 using Shinrai.Entity;
-using Shinrai.Items;
 using Shinrai.Levels;
 using UnityEngine;
 

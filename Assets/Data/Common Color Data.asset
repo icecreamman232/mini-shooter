@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2e2171472ac694cba4d6a33ed78a0b, type: 3}
+  m_Name: Common Color Data
+  m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Data.CommonColorData
+  _rarityCommonColor: {r: 1, g: 1, b: 1, a: 1}
+  _rarityUncommonColor: {r: 0.20392157, g: 0.6117647, b: 0.34509805, a: 1}
+  _rarityRareColor: {r: 0.20392157, g: 0.4, b: 0.6117647, a: 1}
+  _rarityLegendaryColor: {r: 0.7607843, g: 0.21568628, b: 0.3254902, a: 1}
