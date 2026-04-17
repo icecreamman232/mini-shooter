@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,6 +49,17 @@ namespace Shinrai.Core
             }
 
             list.Add(value);
+        }
+
+        public static void DelayCall(this MonoBehaviour mb, float delay, System.Action action)
+        {
+            mb.StartCoroutine(DelayCoroutine(delay, action));
+        }
+
+        private static IEnumerator DelayCoroutine(float delay, System.Action action)
+        {
+            yield return new WaitForSeconds(delay);
+            action?.Invoke();
         }
     }
 }

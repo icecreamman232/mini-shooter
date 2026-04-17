@@ -62,6 +62,14 @@ namespace Shinrai.Levels
             //Player pick up all items or no more item to pick up. Load next room
             if (_itemPicked >= _maxItemCanPicked || _spawnedItems.Count == 0)
             {
+                foreach (var itemPicker in _spawnedItems)
+                {
+                    if (itemPicker != picker)
+                    {
+                        //Prevent player pick up other items
+                        itemPicker.DestroyItem();
+                    }
+                }
                 EventBus.Emit(new GameEventChanged(GameEvent.LoadNextRoom));
             }
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using Shinrai.Entity;
 using Shinrai.Items;
 using Shinrai.Levels;
@@ -120,7 +121,7 @@ namespace Shinrai.Core
         {
             if (eventArgs.GameEvent == GameEvent.LoadNextRoom)
             {
-                InitializeNextLevel();
+                this.DelayCall(2f, InitializeNextLevel);
             }
         }
     }
