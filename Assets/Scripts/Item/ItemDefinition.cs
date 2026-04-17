@@ -9,7 +9,7 @@ namespace Shinrai.Items
     {
         [SerializeField] private Rarity _rarity;
         [SerializeField] private string _displayName;
-        [SerializeField] private string _description;
+        [SerializeField] [TextArea] private string _description;
         [SerializeField] private Sprite _icon;
         [SerializeField] private List<ModifierRecord> _modifierRecords;
         public List<ModifierRecord> ModifierRecords => _modifierRecords;

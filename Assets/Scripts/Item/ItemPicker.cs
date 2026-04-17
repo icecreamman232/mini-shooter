@@ -3,6 +3,7 @@ using System.Collections;
 using Shinrai.Core;
 using Shinrai.Items;
 using Shinrai.VFX;
+using TMPro;
 using UnityEngine;
 
 namespace Shinrai.Levels
@@ -12,6 +13,9 @@ namespace Shinrai.Levels
         [SerializeField] private Material _dissolveFXMaterial;
         [SerializeField] private SpriteRenderer _itemIcon;
         [SerializeField] private SpriteOutline _outline;
+        [SerializeField] private TextMeshProUGUI _itemName;
+        [SerializeField] private TextMeshProUGUI _itemDescription;
+        [SerializeField] private CanvasGroup _itemUICanvasGroup;
 
         private Item _assignedItem;
         private bool _isSelected;
@@ -24,6 +28,7 @@ namespace Shinrai.Levels
         {
             ServiceLocator.GetService<InputService>().InteractInputCallback += OnPickUp;
             _propertyBlock = new MaterialPropertyBlock();
+            _itemUICanvasGroup.alpha = 0;
         }
 
         private void OnDestroy()
@@ -53,6 +58,8 @@ namespace Shinrai.Levels
         {
             _assignedItem = item;
             _itemIcon.sprite = item.Definition.Icon;
+            _itemName.text = item.Definition.DisplayName;
+            _itemDescription.text = item.Definition.Description;
         }
 
         private IEnumerator DestroyItemCoroutine(float duration)
@@ -89,12 +96,14 @@ namespace Shinrai.Levels
         {
             _outline.ShowOutline();
             _isSelected = true;
+            _itemUICanvasGroup.alpha = 1;
         }
         
         private void OnDeselect()
         {
             _outline.HideOutline();
             _isSelected = false;
+            _itemUICanvasGroup.alpha = 0;
         }
     } 
 }
