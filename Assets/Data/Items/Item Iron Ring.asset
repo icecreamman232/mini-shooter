@@ -10,39 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75f2791392dbba141ac2379e87983bb9, type: 3}
-  m_Name: Item Claw of Attack
+  m_Name: Item Iron Ring
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Items.ItemDefinition
-  _rarity: 1
-  _displayName: Claw of Attack
-  _description: Increase 20 damage if health below 30%
-  _icon: {fileID: -1417634720, guid: 91b413ade94fcc34d8747ea55d7482ea, type: 3}
+  _rarity: 0
+  _displayName: Iron Ring
+  _description: + 10 Damage
+  _icon: {fileID: 700556693, guid: 91b413ade94fcc34d8747ea55d7482ea, type: 3}
   _modifierRecords:
   - Definition: {fileID: 11400000, guid: 716bb2f08d95cc24297fc503057c0518, type: 2}
     Source:
       Mode: 0
-      FlatValue: 20
+      FlatValue: 10
       MinValue: 0
       MaxValue: 0
       Formula: 
-    Conditions:
-    - rid: 4789895227648508020
+    Conditions: []
   - Definition: {fileID: 11400000, guid: e887fba90c1ed1945887fec38aa2739b, type: 2}
     Source:
       Mode: 0
-      FlatValue: 20
+      FlatValue: 10
       MinValue: 0
       MaxValue: 0
       Formula: 
-    Conditions:
-    - rid: 4789895219534889070
+    Conditions: []
   references:
     version: 2
-    RefIds:
-    - rid: 4789895219534889070
-      type: {class: HealthBelowNode, ns: Shinrai.Modifiers, asm: Assembly-CSharp}
-      data:
-        Threshold: 0.5
-    - rid: 4789895227648508020
-      type: {class: HealthBelowNode, ns: Shinrai.Modifiers, asm: Assembly-CSharp}
-      data:
-        Threshold: 0.3
+    RefIds: []

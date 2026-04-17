@@ -40,9 +40,10 @@ namespace Shinrai.Entity
             _animator.SetBool(_isRunningAnimBool, input.magnitude > 0.1f);
         }
         
-        private void OnStatChanged(StatComponent.StatChangeEvent obj)
+        private void OnStatChanged(StatComponent.StatChangeEvent eventArgs)
         {
-            
+            if (eventArgs.StatTarget != StatTarget.MoveSpeed) return;
+            _speed = eventArgs.NewValue;
         }
     }
 }

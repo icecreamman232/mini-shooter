@@ -165,7 +165,7 @@ TextureImporter:
         width: 41
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -174,6 +174,50 @@ TextureImporter:
       bones: []
       spriteID: c9d423ac965e34a49bf611cc8fa876ec
       internalID: -1417634720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item-iron-ring
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 13
+        width: 37
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a69765c675989648aae88792b68a3d8
+      internalID: 700556693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item-green-boots
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 14
+        width: 33
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aee5f9ebefeb7549b017bd0d69256fa
+      internalID: 1829459957
       vertices: []
       indices: 
       edges: []
@@ -193,6 +237,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       item-claw-of-attack: -1417634720
+      item-green-boots: 1829459957
+      item-iron-ring: 700556693
       item-straw-hat: 753072640299626105
       item-treasure-chest: -438686071
   mipmapLimitGroupName: 
