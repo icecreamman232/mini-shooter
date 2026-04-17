@@ -335,6 +335,7 @@ Transform:
   - {fileID: 1356566380783619326}
   - {fileID: 4921992637414293937}
   - {fileID: 7821343549948336798}
+  - {fileID: 8867525111747111009}
   - {fileID: 158378796590036218}
   - {fileID: 5451983388962494605}
   m_Father: {fileID: 0}
@@ -445,6 +446,7 @@ MonoBehaviour:
   _invulnerableTime: 0.3
   _enemyController: {fileID: 6401598190447477137}
   _bloodParticle: {fileID: 9214314389891504799}
+  _hitEffect: {fileID: 2286119076218449256}
 --- !u!114 &8593986459064517910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,3 +707,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec4eda4203e2364fa694feee8641aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfContainVFX
+--- !u!1001 &5817252135871737338
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7988045101708999588}
+    m_Modifications:
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547935778520584671, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_Name
+      value: Hit Effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+--- !u!114 &2286119076218449256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5693371061978710162, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+  m_PrefabInstance: {fileID: 5817252135871737338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79205eddda59964bb0052d1750f427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitEffect
+--- !u!4 &8867525111747111009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+  m_PrefabInstance: {fileID: 5817252135871737338}
+  m_PrefabAsset: {fileID: 0}

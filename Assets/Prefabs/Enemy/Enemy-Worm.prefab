@@ -198,6 +198,7 @@ Transform:
   - {fileID: 6358597557390061205}
   - {fileID: 5268378095436367704}
   - {fileID: 8150054214247265859}
+  - {fileID: 6556084719559451047}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5497037367762777513
@@ -306,6 +307,7 @@ MonoBehaviour:
   _invulnerableTime: 0.3
   _enemyController: {fileID: 4903612373417928044}
   _bloodParticle: {fileID: 6505490808502306649}
+  _hitEffect: {fileID: 4489471338959955118}
 --- !u!114 &8623940683737338184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,3 +598,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec4eda4203e2364fa694feee8641aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelfContainVFX
+--- !u!1001 &8164785011128247356
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4874147993591686828}
+    m_Modifications:
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687027358491268403, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547935778520584671, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+      propertyPath: m_Name
+      value: Hit Effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+--- !u!114 &4489471338959955118 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5693371061978710162, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+  m_PrefabInstance: {fileID: 8164785011128247356}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79205eddda59964bb0052d1750f427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitEffect
+--- !u!4 &6556084719559451047 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3149354126887781787, guid: 9534b223b8d2a3449bc98b5865e72f5b, type: 3}
+  m_PrefabInstance: {fileID: 8164785011128247356}
+  m_PrefabAsset: {fileID: 0}

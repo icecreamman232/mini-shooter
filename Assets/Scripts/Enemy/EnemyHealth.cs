@@ -8,7 +8,18 @@ namespace Shinrai.Entity
     {
         [SerializeField] private EnemyController _enemyController;
         [SerializeField] private SelfContainVFX _bloodParticle;
+        [SerializeField] private HitEffect _hitEffect;
         public Action<EnemyController> OnEnemyDeath;
+
+        public override void TakeDamage(float damage, EntityController source)
+        {
+            base.TakeDamage(damage, source);
+            if (_hitEffect != null)
+            {
+                _hitEffect.PlayHitEffect();
+            }
+        }
+
 
         protected override void Kill()
         {
