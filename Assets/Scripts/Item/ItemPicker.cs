@@ -64,6 +64,7 @@ namespace Shinrai.Levels
 
         private IEnumerator DestroyItemCoroutine(float duration)
         {
+            OnDeselect();
             _itemIcon.sharedMaterial = _dissolveFXMaterial;
             float elapsedTime = 0f;
             while (elapsedTime < duration)
