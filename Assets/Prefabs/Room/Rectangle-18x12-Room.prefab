@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5322788611887861182}
   - component: {fileID: 5974648890319025457}
+  - component: {fileID: 4351829906126348156}
   m_Layer: 0
   m_Name: Rectangle-18x12-Room
   m_TagString: Untagged
@@ -123,6 +124,34 @@ MonoBehaviour:
   - {fileID: 2053167494031787463}
   - {fileID: 5109704369762184938}
   _itemPickerPrefab: {fileID: 8315196621936689717, guid: 9a86e775e238a4240b4ab437c75553b3, type: 3}
+  _roomRender: {fileID: 4351829906126348156}
+--- !u!114 &4351829906126348156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105482924727592551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dbdf4775fad2a8429bd67240955138c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomRender
+  _roomWidth: 18
+  _roomHeight: 12
+  _groundTilemap: {fileID: 6649685407887285239}
+  _tileVisuals:
+  - Tile: {fileID: 11400000, guid: 5c4b0e19d004d0e43b448329121e3a54, type: 2}
+    Weight: 10
+  - Tile: {fileID: 11400000, guid: 9e43364e16ae4fd4c94de60b42f1eddd, type: 2}
+    Weight: 3
+  - Tile: {fileID: 11400000, guid: 67298a8069d6ba744936bec2df9cf20f, type: 2}
+    Weight: 3
+  - Tile: {fileID: 11400000, guid: f3ac49e622aa6f3449b00a903ac1c419, type: 2}
+    Weight: 3
+  _specialTileCoverage: 0.3
+  _noiseScale: 0.3
+  _noiseOffset: {x: 0, y: 0}
 --- !u!1 &2106620029446834448
 GameObject:
   m_ObjectHideFlags: 0

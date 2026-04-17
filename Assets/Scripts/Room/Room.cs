@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Shinrai.Core;
@@ -13,6 +12,7 @@ namespace Shinrai.Levels
         [SerializeField] private Transform[] _enemySpawnPoint;
         [SerializeField] private Transform[] _itemSpawnPoint;
         [SerializeField] private ItemPicker _itemPickerPrefab;
+        [SerializeField] private RoomRender _roomRender;
         
         private int _maxItemNumber = 3;
         private int _maxItemCanPicked = 1;
@@ -26,6 +26,7 @@ namespace Shinrai.Levels
         private void Start()
         {
             _spawnedItems = new HashSet<ItemPicker>();
+            _roomRender.Initialize();
         }
 
         public void SpawnItems()

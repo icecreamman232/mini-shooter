@@ -7,6 +7,11 @@ namespace Shinrai.Core
     public static class Util
     {
         private static System.Random _random = new System.Random();
+
+        public static float NextRandomFloat()
+        {
+            return (float)_random.NextDouble();
+        }
         
         /// <summary>
         /// Remap a value from one range to another

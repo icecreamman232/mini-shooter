@@ -117,7 +117,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -139,6 +139,72 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f53e88f827fbad94b9b8de5a7e6b0920
+      internalID: 548903897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-black-ground-2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181b85701e3f10445be9061fad2e6ea0
+      internalID: -1697824529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-black-ground-3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 103de0584ddc1ab408a364325c69e962
+      internalID: 1533349252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-black-ground-4
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 64
         height: 64
@@ -150,8 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f53e88f827fbad94b9b8de5a7e6b0920
-      internalID: 548903897
+      spriteID: 1926a0cf6ef44554d9a3d2864aeea32d
+      internalID: -2138287394
       vertices: []
       indices: 
       edges: []
@@ -171,6 +237,9 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       tile-black-ground: 4671660178848513564
+      tile-black-ground-2: -1697824529
+      tile-black-ground-3: 1533349252
+      tile-black-ground-4: -2138287394
       tile-white-ground: 548903897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
