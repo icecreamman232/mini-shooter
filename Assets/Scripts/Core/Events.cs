@@ -21,6 +21,7 @@ namespace Shinrai.Core
     {
         CreatedPlayer,
         GameStarted,
+        ShowTeleport,
         LoadNextRoom,
     }
     

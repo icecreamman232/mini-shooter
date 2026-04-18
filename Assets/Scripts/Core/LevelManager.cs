@@ -63,6 +63,9 @@ namespace Shinrai.Core
                 LoadingDuration = 0.5f,
                 IsFadeOut = true
             });
+            
+            yield return new WaitForSeconds(0.5f);
+            ServiceLocator.GetService<InputService>().SetActive(true);
         }
 
         private void CreatePlayer(Vector3 spawnPosition)
@@ -70,6 +73,7 @@ namespace Shinrai.Core
             if (_player != null)
             {
                 _player.transform.position = spawnPosition;
+                _player.ResetController();
                 return;
             }
             _player = Instantiate(_playerPrefab, spawnPosition, Quaternion.identity);
@@ -119,7 +123,7 @@ namespace Shinrai.Core
         {
             if (eventArgs.GameEvent == GameEvent.LoadNextRoom)
             {
-                this.DelayCall(2f, InitializeNextLevel);
+                InitializeNextLevel();
             }
         }
     }

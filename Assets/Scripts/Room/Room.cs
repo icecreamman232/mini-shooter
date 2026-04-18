@@ -12,6 +12,7 @@ namespace Shinrai.Levels
         [SerializeField] private Transform[] _enemySpawnPoint;
         [SerializeField] private Transform[] _itemSpawnPoint;
         [SerializeField] private ItemPicker _itemPickerPrefab;
+        [SerializeField] private Teleport _teleport;
         [SerializeField] private RoomRender _roomRender;
         
         private int _maxItemNumber = 3;
@@ -26,6 +27,7 @@ namespace Shinrai.Levels
         private void Start()
         {
             _spawnedItems = new HashSet<ItemPicker>();
+            _teleport.gameObject.SetActive(false);
             _roomRender.Initialize();
         }
 
@@ -71,7 +73,8 @@ namespace Shinrai.Levels
                         itemPicker.DestroyItem();
                     }
                 }
-                EventBus.Emit(new GameEventChanged(GameEvent.LoadNextRoom));
+                _teleport.gameObject.SetActive(true);
+                EventBus.Emit(new GameEventChanged(GameEvent.ShowTeleport));
             }
         }
     }

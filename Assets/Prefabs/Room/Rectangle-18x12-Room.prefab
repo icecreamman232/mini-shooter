@@ -101,6 +101,7 @@ Transform:
   - {fileID: 4370399367467549255}
   - {fileID: 2053167494031787463}
   - {fileID: 5109704369762184938}
+  - {fileID: 3567957361890496819}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5974648890319025457
@@ -124,6 +125,7 @@ MonoBehaviour:
   - {fileID: 2053167494031787463}
   - {fileID: 5109704369762184938}
   _itemPickerPrefab: {fileID: 8315196621936689717, guid: 9a86e775e238a4240b4ab437c75553b3, type: 3}
+  _teleport: {fileID: 7200006432430456903}
   _roomRender: {fileID: 4351829906126348156}
 --- !u!114 &4351829906126348156
 MonoBehaviour:
@@ -140,6 +142,10 @@ MonoBehaviour:
   _roomWidth: 18
   _roomHeight: 12
   _groundTilemap: {fileID: 6649685407887285239}
+  _wallTilemap: {fileID: 6388306266761220277}
+  _wallTiles:
+  - {fileID: 11400000, guid: eaa252eeb22fdc64c95f4ea2f1e289fb, type: 2}
+  - {fileID: 11400000, guid: f4af616a86bd5f34aac40e225d69d726, type: 2}
   _tileVisuals:
   - Tile: {fileID: 11400000, guid: 5c4b0e19d004d0e43b448329121e3a54, type: 2}
     Weight: 10
@@ -3449,3 +3455,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5322788611887861182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7289150978311704557
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5322788611887861182}
+    m_Modifications:
+    - target: {fileID: 2501930340247852710, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_Name
+      value: Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+--- !u!4 &3567957361890496819 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6101157453276962526, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+  m_PrefabInstance: {fileID: 7289150978311704557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7200006432430456903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 487456943925776298, guid: ab311dc2e36add54b97385943de11b21, type: 3}
+  m_PrefabInstance: {fileID: 7289150978311704557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3eeceaf077c6b48a5c2a25b9d7b2dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Teleport

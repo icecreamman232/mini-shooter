@@ -20,6 +20,11 @@ namespace Shinrai.Entity
             _speed = _statComponent.GetBase(StatTarget.MoveSpeed);
             _statComponent.OnStatChanged += OnStatChanged;
         }
+
+        public void ResetMovement()
+        {
+            _moveDirection = Vector2.zero;
+        }
         
         public void CleanUp()
         {

@@ -2,7 +2,8 @@ using System;
 using Shinrai.Core;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Random = System.Random;
+using Random = UnityEngine.Random;
+
 
 namespace Shinrai.Levels
 {
@@ -18,6 +19,8 @@ namespace Shinrai.Levels
         [SerializeField] private int _roomWidth;
         [SerializeField] private int _roomHeight;
         [SerializeField] private Tilemap _groundTilemap;
+        [SerializeField] private Tilemap _wallTilemap;
+        [SerializeField] private TileBase[] _wallTiles;
         [SerializeField] private TileVisual[] _tileVisuals;
 
         [Header("Perlin Noise")]
@@ -52,7 +55,28 @@ namespace Shinrai.Levels
                     _groundTilemap.SetTile(new Vector3Int(x, y, 0), _tileVisuals[tileIndex].Tile);
                 }
             }
+
+            DrawWall();
         }
+
+        private void DrawWall()
+        {
+            var halfRoomWidth = (_roomWidth + 2) / 2;
+            var halfRoomHeight = (_roomHeight + 2) / 2;
+
+            for (int x = -halfRoomWidth; x < halfRoomWidth; x++)
+            {
+                for (int y = -halfRoomHeight; y < halfRoomHeight; y++)
+                {
+                    if (_wallTilemap.GetTile(new Vector3Int(x, y, 0)) != null)
+                    {
+                        var tile = _wallTiles[Random.Range(0, _wallTiles.Length)];
+                        _wallTilemap.SetTile(new Vector3Int(x, y, 0), tile);
+                    }
+                }
+            }
+        }
+        
 
         private int PickWeightedTileIndex(int minIndex, int maxIndex)
         {

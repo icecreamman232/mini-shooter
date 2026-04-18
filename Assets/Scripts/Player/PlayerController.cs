@@ -37,5 +37,17 @@ namespace Shinrai.Entity
             ServiceLocator.GetService<CameraController>().SetActive(true);
             ServiceLocator.GetService<InGameDataManager>().AssignPlayer(transform);
         }
+
+        public void ResetController()
+        {
+            ResetRotScale();
+            _playerMovement.ResetMovement();
+        }
+
+        public void ResetRotScale()
+        {
+            transform.rotation = Quaternion.identity;
+            transform.localScale = Vector3.one;
+        }
     }
 }

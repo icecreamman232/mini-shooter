@@ -33,6 +33,11 @@ namespace Shinrai.Core
             UnregisterActions();
         }
 
+        public void SetActive(bool isActive)
+        {
+            _isActive = isActive;
+        }
+
         private void Update()
         {
             if (!_isActive) return;
