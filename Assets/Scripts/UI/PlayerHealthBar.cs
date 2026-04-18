@@ -23,7 +23,7 @@ namespace Shinrai.UI
         private void OnUpdateHealthBar(PlayerHealthChangedEvent e)
         {
             _healthBar.fillAmount = Util.Remap(e.CurrentHealth, 0, e.MaxHealth, 0, 1);
-            _healthText.text = $"{e.CurrentHealth:F1}/{e.MaxHealth:F1}";
+            _healthText.text = $"{Util.FormatText(e.CurrentHealth)}/{Util.FormatText(e.MaxHealth)}";
         }
     }
 }

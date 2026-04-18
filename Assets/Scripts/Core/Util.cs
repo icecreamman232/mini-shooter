@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace Shinrai.Core
@@ -34,6 +35,18 @@ namespace Shinrai.Core
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Format float value to string. If value is integer, use F0 format. Otherwise, use F1 format.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string FormatText(float value)
+        {
+            return Mathf.Approximately(value, Mathf.Round(value)) 
+                ? value.ToString("F0", CultureInfo.InvariantCulture) 
+                : value.ToString("F1", CultureInfo.InvariantCulture);
         }
 
         public static T PickRandom<T>(this List<T> list)
