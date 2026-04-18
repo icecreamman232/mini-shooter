@@ -63,7 +63,13 @@ namespace Shinrai.Modifiers
 
         private void OnExternalStateChanged(ExternalStateChangeEvent eventArgs)
         {
-            _finalValues[eventArgs.StatTarget] = eventArgs.Value;
+            eventArgs.Value = Constant.CheckMax(eventArgs.StatTarget, eventArgs.Value);
+            eventArgs.Value = Constant.CheckMin(eventArgs.StatTarget, eventArgs.Value);
+            if (eventArgs.StatTarget == StatTarget.CurrentHP)
+            {
+                eventArgs.Value = Mathf.Clamp(eventArgs.Value, 0, _finalValues[StatTarget.MaxHP]);
+            }
+            _baseValues[eventArgs.StatTarget] = eventArgs.Value;
         }
 
         public float GetBase(StatTarget stat) => _baseValues[stat];
@@ -73,8 +79,12 @@ namespace Shinrai.Modifiers
         {
             value = Constant.CheckMax(stat, value);
             value = Constant.CheckMin(stat, value);
+            if (stat == StatTarget.CurrentHP)
+            {
+                value = Mathf.Clamp(value, 0, _finalValues[StatTarget.MaxHP]);
+            }
             _finalValues[stat] = value;
-            OnStatChanged?.Invoke( new StatChangeEvent(stat, _baseValues[stat], _finalValues[stat]));
+            OnStatChanged?.Invoke(new StatChangeEvent(stat, _baseValues[stat], _finalValues[stat]));
         }
     }
 }

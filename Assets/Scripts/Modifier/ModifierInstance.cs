@@ -37,6 +37,7 @@ namespace Shinrai.Modifiers
     public class ModifierRecord
     {
         public ModifierDefinition Definition;
+        public float Duration; // 0 means permanent
         public ValueSource Source;
         [SerializeReference]
         public List<ConditionNode> Conditions;
@@ -76,11 +77,16 @@ namespace Shinrai.Modifiers
     {
         public ModifierDefinition Definition;
         public float RolledValue;
+        public readonly float MaxDuration;
+        public float Duration;
+        public float AccumulatedValue = 0;
         public IConditionSpecification CompiledCondition;
 
         public ModifierInstance(ModifierRecord record)
         {
             Definition = record.Definition;
+            MaxDuration = record.Duration;
+            Duration = 0;
             RolledValue = record.Source.Mode switch
             {
                 ValueSourceMode.Flat => record.Source.FlatValue,

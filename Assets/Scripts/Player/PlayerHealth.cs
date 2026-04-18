@@ -71,7 +71,10 @@ namespace Shinrai.Entity
             if (eventArgs.StatTarget == StatTarget.CurrentHP)
             {
                 _currentHealth = eventArgs.NewValue;
-                UpdateHealthBar();
+                base.UpdateHealthBar();
+                _playerHealthChangedEvent.CurrentHealth = _currentHealth;
+                _playerHealthChangedEvent.MaxHealth = _maxHealth;
+                EventBus.Emit(_playerHealthChangedEvent);
             }
             else
             {

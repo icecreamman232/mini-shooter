@@ -11,6 +11,9 @@ namespace Shinrai.Modifiers
         private Dictionary<StatTarget, List<ModifierInstance>> _modifiers = new();
         private Dictionary<StatTarget, List<ModifierInstance>> _conditionalModifiers = new();
         private Dictionary<StatTarget, List<ModifierInstance>> _conditionDependencyIndex = new();
+        private Dictionary<StatTarget, List<ModifierInstance>> _timedModifiers = new();
+        
+        private List<ModifierInstance> _pendingRemovals = new();
 
         private bool _recalculationScheduled = false;
         /// <summary>
@@ -23,6 +26,7 @@ namespace Shinrai.Modifiers
         private ConditionEvaluator _conditionEvaluator;
 
         private readonly Dictionary<ModifierInstance, bool> _lastConditionState = new();
+        private bool _isProcessingRemovals = false;
 
         private void Start()
         {
@@ -50,12 +54,56 @@ namespace Shinrai.Modifiers
             EventBus.Unsubscribe<ExternalStateChangeEvent>(OnStatChangedExternally);
         }
 
+        private void Update()
+        {
+            if (_timedModifiers.Count > 0)
+            {
+                _markDirtyStatTargets.Clear();
+                foreach (var statTarget in _timedModifiers.Keys)
+                {
+                    foreach (var modifier in _timedModifiers[statTarget])
+                    {
+                        if(modifier.Duration >= modifier.MaxDuration) continue;
+                            
+                        modifier.Duration += Time.deltaTime;
+                            
+                        // Calculate progress-based accumulated value
+                        var progress = Mathf.Min(modifier.Duration / modifier.MaxDuration, 1f);
+                        modifier.AccumulatedValue = modifier.RolledValue * progress;
+                            
+                        if (modifier.Duration >= modifier.MaxDuration)
+                        {
+                            modifier.Duration = modifier.MaxDuration;
+                            modifier.AccumulatedValue = modifier.RolledValue;
+                            _pendingRemovals.Add(modifier);
+                        }
+                            
+                        _markDirtyStatTargets[statTarget] = true;
+                    }
+                }
+                
+                CalculateStats(_markDirtyStatTargets.Keys);
+            }
+
+            if (_pendingRemovals.Count <= 0) return;
+            
+            foreach (var modifier in _pendingRemovals)
+            {
+                RemoveModifier(modifier);
+            }
+        }
+
         public void AddModifier(ModifierInstance modifierInstance)
         {
             _markDirtyStatTargets.Clear();
 
             Util.AddToDictionaryList(_modifiers, modifierInstance.Definition.StatTarget, modifierInstance);
 
+            if (modifierInstance.MaxDuration > 0)
+            {
+                Util.AddToDictionaryList(_timedModifiers, modifierInstance.Definition.StatTarget, modifierInstance);
+            }
+            
             if (modifierInstance.CompiledCondition != null)
             {
                 Util.AddToDictionaryList(_conditionalModifiers, modifierInstance.Definition.StatTarget, modifierInstance);
@@ -78,6 +126,69 @@ namespace Shinrai.Modifiers
 
             CalculateStats(_markDirtyStatTargets.Keys);
         }
+
+        public void RemoveModifier(ModifierInstance modifierInstance)
+        {
+            if (!_pendingRemovals.Contains(modifierInstance))
+            {
+                _pendingRemovals.Add(modifierInstance);
+            }
+
+            if (!_isProcessingRemovals)
+            {
+                StartCoroutine(ProcessPendingRemovals());
+            }
+        }
+
+        private IEnumerator ProcessPendingRemovals()
+        {
+            _isProcessingRemovals = true;
+            yield return null;
+            _markDirtyStatTargets.Clear();
+            
+            foreach (var modifier in _pendingRemovals)
+            {
+                RemoveModifierImmediate(modifier);
+            }
+            
+            _pendingRemovals.Clear();
+
+            if (_markDirtyStatTargets.Count > 0)
+            {
+                CalculateStats(_markDirtyStatTargets.Keys);
+            }
+            
+            _isProcessingRemovals = false;
+        }
+
+        private void RemoveModifierImmediate(ModifierInstance modifierInstance)
+        {
+            var statTarget = modifierInstance.Definition.StatTarget;
+            
+            if (_modifiers.ContainsKey(statTarget))
+            {
+                _modifiers[statTarget].Remove(modifierInstance);
+            }
+
+            if (modifierInstance.CompiledCondition != null)
+            {
+                if (_conditionalModifiers.ContainsKey(statTarget))
+                {
+                    _conditionalModifiers[statTarget].Remove(modifierInstance);
+                }
+            }
+
+            foreach (var dependency in modifierInstance.GetConditionDependencies())
+            {
+                if (_conditionDependencyIndex.ContainsKey(dependency))
+                {
+                    _conditionDependencyIndex[dependency].Remove(modifierInstance);
+                }
+            }
+            
+            _lastConditionState.Remove(modifierInstance);
+        }
+        
 
         private bool IsConditionMet(ModifierInstance modifierInstance)
         {
@@ -141,7 +252,9 @@ namespace Shinrai.Modifiers
                     if (modifier.CompiledCondition == null || isActive)
                     {
                         var operation = modifier.Definition.OperationType;
-                        _passScratch[operation].Add(modifier.RolledValue);
+                        _passScratch[operation].Add(modifier.MaxDuration > 0 
+                            ? modifier.AccumulatedValue 
+                            : modifier.RolledValue);
                     }
                 }
 
@@ -151,7 +264,6 @@ namespace Shinrai.Modifiers
                 {
                     finalValue = operationStrat.Apply(finalValue, _passScratch[operationStrat.OperationType]);
                 }
-                
                 _statComponent.SetFinal(dirtyStatTarget, finalValue);
             }
         }
