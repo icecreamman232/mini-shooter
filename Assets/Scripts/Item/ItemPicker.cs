@@ -19,6 +19,7 @@ namespace Shinrai.Levels
         [SerializeField] private CanvasGroup _itemUICanvasGroup;
         [SerializeField] private CommonColorData _commonColorData;
 
+        private PickupItemPromptEvent _pickupItemPromptEvent;
         private Item _assignedItem;
         private bool _isSelected;
         private bool _canPickUp = true;
@@ -28,6 +29,7 @@ namespace Shinrai.Levels
 
         private void Awake()
         {
+            _pickupItemPromptEvent = new PickupItemPromptEvent();
             ServiceLocator.GetService<InputService>().InteractInputCallback += OnPickUp;
             _propertyBlock = new MaterialPropertyBlock();
             _itemUICanvasGroup.alpha = 0;
@@ -93,6 +95,8 @@ namespace Shinrai.Levels
             playerController.PlayerInventory.AddItem(_assignedItem);
             OnPickedUp?.Invoke(this);
             ServiceLocator.GetService<ItemService>().RemoveItem(_assignedItem.Definition);
+            _pickupItemPromptEvent.IsPromptVisible = false;
+            EventBus.Emit(_pickupItemPromptEvent);
             Destroy(gameObject);
         }
 
@@ -101,14 +105,26 @@ namespace Shinrai.Levels
         {
             _outline.ShowOutline();
             _isSelected = true;
+            
+            //Show item UI
             _itemUICanvasGroup.alpha = 1;
+            
+            //Show prompt button
+            _pickupItemPromptEvent.IsPromptVisible = true;
+            EventBus.Emit(_pickupItemPromptEvent);
         }
         
         private void OnDeselect()
         {
             _outline.HideOutline();
             _isSelected = false;
+            
+            //Hide item UI
             _itemUICanvasGroup.alpha = 0;
+            
+            //Hide prompt button
+            _pickupItemPromptEvent.IsPromptVisible = false;
+            EventBus.Emit(_pickupItemPromptEvent);
         }
     } 
 }

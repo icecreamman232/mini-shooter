@@ -11,6 +11,7 @@ namespace Shinrai.Entity
         [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private PlayerWeapon _playerWeapon;
         [SerializeField] private PlayerInventory _playerInventory;
+        [SerializeField] private PlayerModel _playerModel;
         [SerializeField] private StatComponent _statComponent;
         public PlayerInventory PlayerInventory => _playerInventory;
         public PlayerHealth Health => _playerHealth;
@@ -28,6 +29,7 @@ namespace Shinrai.Entity
             _playerInventory.Initialize();
             _playerMovement.Initialize(_statComponent);
             _playerHealth.Initialize(_statComponent);
+            _playerModel.Initialize();
             _playerWeapon.Initialize(this, _statComponent);
             
             

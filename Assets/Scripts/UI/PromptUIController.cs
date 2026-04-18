@@ -5,22 +5,22 @@ namespace Shinrai.UI
 {
     public class PromptUIController : MonoBehaviour
     {
-        [SerializeField] private GameObject _treasureChestPrompt;
+        [SerializeField] private GameObject _pickUpItemPrompt;
 
         private void Start()
         {
-            EventBus.Subscribe<TreasureChestPromptEvent>(OnToggleTreasureChestPrompt);
-            _treasureChestPrompt.SetActive(false);
+            EventBus.Subscribe<PickupItemPromptEvent>(OnTogglePickupPrompt);
+            _pickUpItemPrompt.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            EventBus.Unsubscribe<TreasureChestPromptEvent>(OnToggleTreasureChestPrompt);
+            EventBus.Unsubscribe<PickupItemPromptEvent>(OnTogglePickupPrompt);
         }
 
-        private void OnToggleTreasureChestPrompt(TreasureChestPromptEvent treasureChestPromptEvent)
+        private void OnTogglePickupPrompt(PickupItemPromptEvent pickupItemPromptEvent)
         {
-            _treasureChestPrompt.SetActive(treasureChestPromptEvent.IsPromptVisible);
+            _pickUpItemPrompt.SetActive(pickupItemPromptEvent.IsPromptVisible);
         }
     }
 }

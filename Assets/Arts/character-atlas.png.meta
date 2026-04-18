@@ -134,6 +134,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: player_weapon_model
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.42945337, y: 0.45179304}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 176189530bae43540a3cf72bf025aa3e
+      internalID: -628164102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -149,6 +171,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       player: 4652919399372718670
+      player_weapon_model: -628164102
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

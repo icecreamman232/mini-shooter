@@ -10,12 +10,12 @@ namespace Shinrai.Levels
     {
         [SerializeField] private ItemSpawner _itemSpawner;
         [SerializeField] private SpriteOutline _outline;
-        private TreasureChestPromptEvent _treasureChestPromptEvent;
+        private PickupItemPromptEvent m_pickupItemPromptEvent;
         private bool _isPromptVisible;
 
         private void Start()
         {
-            _treasureChestPromptEvent = new TreasureChestPromptEvent();
+            m_pickupItemPromptEvent = new PickupItemPromptEvent();
             ServiceLocator.GetService<InputService>().InteractInputCallback += OnOpenChest;
         }
 
@@ -55,18 +55,18 @@ namespace Shinrai.Levels
 
         private void ShowChestPrompt()
         {
-            _treasureChestPromptEvent.IsPromptVisible = true;
+            m_pickupItemPromptEvent.IsPromptVisible = true;
             _isPromptVisible = true;
             _outline.ShowOutline();
-            EventBus.Emit(_treasureChestPromptEvent);
+            EventBus.Emit(m_pickupItemPromptEvent);
         }
         
         private void HideChestPrompt()
         {
-            _treasureChestPromptEvent.IsPromptVisible = false;
+            m_pickupItemPromptEvent.IsPromptVisible = false;
             _isPromptVisible = false;
             _outline.HideOutline();
-            EventBus.Emit(_treasureChestPromptEvent);
+            EventBus.Emit(m_pickupItemPromptEvent);
         }
     }
 }

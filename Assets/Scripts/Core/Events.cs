@@ -44,7 +44,7 @@ namespace Shinrai.Core
         public bool IsFadeOut;
     }
     
-    public struct TreasureChestPromptEvent
+    public struct PickupItemPromptEvent
     {
         public bool IsPromptVisible;
     }
