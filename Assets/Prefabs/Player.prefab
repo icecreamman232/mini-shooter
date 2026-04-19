@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Weapon.PlayerWeapon
   _projectilePool: {fileID: 136445159418366521}
   _delayBetweenShots: 0.5
+  _shootPivot: {fileID: 7010064280623881670}
 --- !u!114 &136445159418366521
 MonoBehaviour:
   m_ObjectHideFlags: 0

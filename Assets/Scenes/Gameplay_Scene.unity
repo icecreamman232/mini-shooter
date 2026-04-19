@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9291e6b41ed6fd04c939bf3367072400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Core.ItemService
-  _testItem: {fileID: 11400000, guid: e2a5c964f2b2dab49acb4532602be0f7, type: 2}
+  _testItem: {fileID: 11400000, guid: ccdc31c034ddcdd4ca099496cdacb15c, type: 2}
   _forceAddTestItem: 1
   _itemDefinitions:
   - {fileID: 11400000, guid: faf713c54a367ba40ba32017266b2e12, type: 2}
@@ -172,6 +172,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d3ed8c584cd891e4b87f6e13ca4ff9c1, type: 2}
   - {fileID: 11400000, guid: 284a61456fd228748b95fe97ea6c47b9, type: 2}
   - {fileID: 11400000, guid: 6c546f8d569ef5b4b89b3085ba62b15b, type: 2}
+  - {fileID: 11400000, guid: ccdc31c034ddcdd4ca099496cdacb15c, type: 2}
 --- !u!1 &317123598
 GameObject:
   m_ObjectHideFlags: 0

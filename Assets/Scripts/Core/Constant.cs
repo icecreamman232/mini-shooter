@@ -23,6 +23,8 @@ namespace Shinrai.Core
                     return currentValue;
                 case StatTarget.FireRate:
                     return currentValue >= MAX_FIRE_RATE ? MAX_FIRE_RATE : currentValue;
+                case StatTarget.NumberOfShot:
+                    return currentValue >= 2 ? 2 : currentValue;
             }
             return currentValue;
         }
@@ -39,6 +41,8 @@ namespace Shinrai.Core
                     return currentValue <= 0 ? 0 : currentValue;
                 case StatTarget.FireRate:
                     return currentValue <= MIN_FIRE_RATE ? MIN_FIRE_RATE : currentValue;
+                case StatTarget.NumberOfShot:
+                    return currentValue < 1 ? 1 : currentValue;
             }
             return currentValue;
         }

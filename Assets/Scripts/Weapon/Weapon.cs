@@ -8,7 +8,8 @@ namespace Shinrai.Weapon
     {
         [SerializeField] protected ProjectilePool _projectilePool; 
         [SerializeField] protected float _delayBetweenShots;
-
+        
+        protected int _numberOfShot;
         protected bool _canShoot = true;
         protected EntityController _owner;
        
@@ -17,24 +18,31 @@ namespace Shinrai.Weapon
             _owner = owner;
         }
         
-        public virtual void Shoot(Vector2 shootDirection, float minDamage = 0, float maxDamage = 0)
+        public virtual void Shoot(Vector2 shootDirection, Vector2 spawnPosition = default, float minDamage = 0, float maxDamage = 0)
         {
             if (!_canShoot) return;
             var newProjectile = _projectilePool.GetPooledObject();
             if (newProjectile == null) return;
+            if (spawnPosition != default)
+            {
+                newProjectile.transform.position = spawnPosition;
+            }
+            else
+            {
+                newProjectile.transform.position = transform.position;
+            }
             
-            newProjectile.transform.position = transform.position;
             newProjectile.transform.up = shootDirection;
             newProjectile.Spawn(_owner, minDamage, maxDamage);
             StartCoroutine(OnDelayBetweenShots());
         }
         
-        protected Vector2 CalculateAimDirection(Vector2 targetPosition)
+        protected Vector2 CalculateAimDirection(Vector2 targetPosition, Vector2 shootPosition)
         {
-            return (targetPosition - (Vector2)transform.position).normalized;
+            return (targetPosition - shootPosition).normalized;
         }
         
-        private IEnumerator OnDelayBetweenShots()
+        protected IEnumerator OnDelayBetweenShots()
         {
             _canShoot = false;
             yield return new WaitForSeconds(_delayBetweenShots);

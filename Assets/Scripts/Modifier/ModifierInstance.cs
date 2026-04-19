@@ -12,6 +12,7 @@ namespace Shinrai.Modifiers
         MaxDamage,
         MoveSpeed,
         FireRate,
+        NumberOfShot,
     }
     
     public enum ModifierOperationType { Flat, AddPercent, MultiplyPercent }

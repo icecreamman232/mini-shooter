@@ -40,8 +40,7 @@ namespace Shinrai.Core
             for (int i = 0; i < _poolSize; i++)
             {
                 T pooledObject = Instantiate(_objectToPool, _parent.transform);
-                var currentName = _objectToPool.name;
-                currentName = currentName.Replace("(Clone)", i.ToString());
+                var currentName = $"{_objectToPool.name}_{i}";
                 pooledObject.name = currentName;
                 pooledObject.gameObject.SetActive(false);
                 _pooledObjects.Add(pooledObject);
