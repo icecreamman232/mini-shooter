@@ -10,6 +10,9 @@ namespace Shinrai.Core
         public const float MAX_FIRE_RATE = 10;
         public const float MIN_DELAY = 0.1f;
         public const float MAX_DELAY = 2f;
+        
+        public const float HANDICAP_DAMAGE_FOR_DOUBLE_SHOT = 0.65f;
+        
 
         public static float CheckMax(StatTarget statTarget, float currentValue)
         {

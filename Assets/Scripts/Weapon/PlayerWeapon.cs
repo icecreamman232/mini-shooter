@@ -77,8 +77,12 @@ namespace Shinrai.Weapon
             leftProjectile.transform.up = shootDirection;
             rightProjectile.transform.up = shootDirection;
             
-            leftProjectile.Spawn(_owner, minDamage, maxDamage);
-            rightProjectile.Spawn(_owner, minDamage, maxDamage);
+            leftProjectile.Spawn(_owner, 
+                minDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT, 
+                maxDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT);
+            rightProjectile.Spawn(_owner, 
+                minDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT, 
+                maxDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT);
             
             StartCoroutine(OnDelayBetweenShots());
         }
