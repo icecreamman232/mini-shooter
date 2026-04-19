@@ -33,9 +33,10 @@ namespace Shinrai.Levels
 
         private IEnumerator OpeningChestCoroutine()
         {
-            var itemList = ServiceLocator.GetService<ItemService>().GetItemByRarity(Rarity.Common);
-            _itemSpawner.SpawnItems(itemList, transform.position, 1.5f);
-            yield return new WaitUntil(()=> _itemSpawner.SpawnFinished);
+            // var itemList = ServiceLocator.GetService<ItemService>().GetItemsByRarity(Rarity.Common);
+            // _itemSpawner.SpawnItems(itemList, transform.position, 1.5f);
+            // yield return new WaitUntil(()=> _itemSpawner.SpawnFinished);
+            yield return new WaitForSeconds(1f);
             HideChestPrompt();
             Destroy(gameObject);
         }

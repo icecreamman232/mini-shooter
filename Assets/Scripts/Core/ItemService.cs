@@ -11,7 +11,7 @@ namespace Shinrai.Core
         [SerializeField] private ItemDefinition _testItem;
         [SerializeField] private bool _forceAddTestItem;
         [SerializeField] private List<ItemDefinition> _itemDefinitions;
-        
+        private List<ItemDefinition> _candidateList = new List<ItemDefinition>();
         
         public void Install()
         {
@@ -25,15 +25,27 @@ namespace Shinrai.Core
 
         public void RemoveItem(ItemDefinition itemDefinition)
         {
+            //Player chosen an item. Clear the candidate list so next time player will have chance to pick them
+            _itemDefinitions.AddRange(_candidateList);
+            _candidateList.Clear();
             _itemDefinitions.Remove(itemDefinition);
         }
         
-        public List<Item> GetItemByRarity(Rarity rarity) => GetItemsByFilter(itemDef => itemDef.Rarity == rarity);
-        
+        private List<Item> GetItemsByRarity(Rarity rarity) => GetItemsByFilter(itemDef => itemDef.Rarity == rarity);
+
+        public Item GetItemByRarity(Rarity rarity)
+        {
+            var picked = GetItemsByRarity(rarity).PickRandom();
+            _candidateList.Add(picked.Definition);
+            _itemDefinitions.Remove(picked.Definition);
+            return picked;
+        }
+
+
         private List<Item> GetItemsByFilter(Func<ItemDefinition, bool> filter)
         {
-            var matchedItemDefs = _itemDefinitions.Where(filter);
-  
+            var matchedItemDefs = _itemDefinitions.Where(filter).ToList();
+
             var itemList = new List<Item>();
             foreach (var itemDef in matchedItemDefs)
             {

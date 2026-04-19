@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Shinrai.Core;
+using Shinrai.Data;
 using Shinrai.Items;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace Shinrai.Levels
         [SerializeField] private ItemPicker _itemPickerPrefab;
         [SerializeField] private Teleport _teleport;
         [SerializeField] private RoomRender _roomRender;
+        [SerializeField] private RoomLootData _roomLootData;
         
         private int _maxItemNumber = 3;
         private int _maxItemCanPicked = 1;
@@ -31,14 +33,45 @@ namespace Shinrai.Levels
             _roomRender.Initialize();
         }
 
-        public void SpawnItems()
+        public void SpawnItems(int areaIndex)
         {
-            //TODO:
-            //1. Add shuffle to item list
-            //2. Remove picked items from ItemService
-            var itemList = ServiceLocator.GetService<ItemService>().GetItemByRarity(Rarity.Common);
+            var lootPercentage = _roomLootData.GetLootPercentByLevel(areaIndex);
+            var itemService = ServiceLocator.GetService<ItemService>();
+            var itemList = new List<Item>();
+            
+            for (int i = 0; i < _maxItemNumber; i++)
+            {
+                var randomRarity = GetLootRarityType(lootPercentage);
+                var item = itemService.GetItemByRarity(randomRarity);
+                if (item != null) itemList.Add(item);
+            }
+            
             itemList.Shuffle();
             StartCoroutine(OnSpawningItems(itemList));
+        }
+
+        private Rarity GetLootRarityType(LootPercentageByRarity lootPercentageByRarity)
+        {
+            var random = Random.Range(0f, 100f);
+            
+            if (random < lootPercentageByRarity.Common)
+            {
+                return Rarity.Common;
+            }
+            
+            random -= lootPercentageByRarity.Common;
+            if (random < lootPercentageByRarity.Uncommon)
+            {
+                return Rarity.Uncommon;
+            }
+            
+            random -= lootPercentageByRarity.Uncommon;
+            if (random < lootPercentageByRarity.Rare)
+            {
+                return Rarity.Rare;
+            }
+            
+            return Rarity.Legendary;
         }
 
         private IEnumerator OnSpawningItems(List<Item> itemList)

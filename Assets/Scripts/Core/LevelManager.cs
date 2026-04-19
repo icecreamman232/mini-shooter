@@ -13,6 +13,7 @@ namespace Shinrai.Core
         [SerializeField] private Room[] _roomPrefabs;
         [SerializeField] private EnemyController[] _enemyPrefabs;
 
+        private int _areaIndex = 0;
         private PlayerController _player;
         private HashSet<EnemyController> _spawnedEnemies;
         private Room _currentRoom;
@@ -115,7 +116,7 @@ namespace Shinrai.Core
             //All enemies area dead,spawn rewards
             if (_spawnedEnemies.Count == 0)
             {
-                _currentRoom.SpawnItems();
+                _currentRoom.SpawnItems(_areaIndex);
             }
         }
         

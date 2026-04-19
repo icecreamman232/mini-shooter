@@ -127,6 +127,7 @@ MonoBehaviour:
   _itemPickerPrefab: {fileID: 8315196621936689717, guid: 9a86e775e238a4240b4ab437c75553b3, type: 3}
   _teleport: {fileID: 7200006432430456903}
   _roomRender: {fileID: 4351829906126348156}
+  _roomLootData: {fileID: 11400000, guid: 1c4d457baf49c4e4fa6991e317bae4b0, type: 2}
 --- !u!114 &4351829906126348156
 MonoBehaviour:
   m_ObjectHideFlags: 0
