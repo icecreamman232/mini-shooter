@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shinrai.Entity.EnemyHealth
   _currentHealth: 0
-  _maxHealth: 120
+  _maxHealth: 250
   _invulnerableTime: 0.3
   _enemyController: {fileID: 8514256249845153485}
   _bloodParticle: {fileID: 447224472139323597}
