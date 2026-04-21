@@ -42,7 +42,9 @@ namespace Shinrai.Modifiers
                 [StatTarget.MinDamage] = _characterData.DefaultMinDamage,
                 [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage,
                 [StatTarget.FireRate] = _characterData.DefaultFireRate,
-                [StatTarget.NumberOfShot] = 1
+                [StatTarget.NumberOfShot] = 1,
+                [StatTarget.ProjectileSize] = 1,
+                [StatTarget.ProjectileSpeed] = _characterData.ProjectileSpeed,
             };
             _finalValues = new Dictionary<StatTarget, float>()
             {
@@ -52,7 +54,9 @@ namespace Shinrai.Modifiers
                 [StatTarget.MinDamage] = _characterData.DefaultMinDamage,
                 [StatTarget.MaxDamage] = _characterData.DefaultMaxDamage,
                 [StatTarget.FireRate] = _characterData.DefaultFireRate,
-                [StatTarget.NumberOfShot] = 1
+                [StatTarget.NumberOfShot] = 1,
+                [StatTarget.ProjectileSize] = 1,
+                [StatTarget.ProjectileSpeed] = _characterData.ProjectileSpeed,
             };
             
             EventBus.Subscribe<ExternalStateChangeEvent>(OnExternalStateChanged);

@@ -18,22 +18,21 @@ namespace Shinrai.Weapon
             _owner = owner;
         }
         
-        public virtual void Shoot(Vector2 shootDirection, Vector2 spawnPosition = default, float minDamage = 0, float maxDamage = 0)
+        public virtual void Shoot(Vector2 shootDirection, Vector2 spawnPosition = default, float minDamage = 0, float maxDamage = 0, float projectileSpeed = 0)
         {
             if (!_canShoot) return;
             var newProjectile = _projectilePool.GetPooledObject();
             if (newProjectile == null) return;
-            if (spawnPosition != default)
-            {
-                newProjectile.transform.position = spawnPosition;
-            }
-            else
-            {
-                newProjectile.transform.position = transform.position;
-            }
-            
-            newProjectile.transform.up = shootDirection;
-            newProjectile.Spawn(_owner, minDamage, maxDamage);
+
+
+            newProjectile.Configure()
+                .WithOwner(_owner)
+                .AtPosition(spawnPosition != default ? spawnPosition : transform.position)
+                .WithDamage(minDamage, maxDamage)
+                .WithDirection(shootDirection)
+                .WithSpeed(projectileSpeed != 0 ? projectileSpeed : newProjectile.Speed)
+                .Build();
+
             StartCoroutine(OnDelayBetweenShots());
         }
         

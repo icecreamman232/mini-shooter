@@ -41,20 +41,21 @@ namespace Shinrai.Weapon
                 _statComponent.GetFinal(StatTarget.MaxDamage));
         }
 
-        public override void Shoot(Vector2 shootDirection, Vector2 spawnPosition = default, float minDamage = 0, float maxDamage = 0)
+        public override void Shoot(Vector2 shootDirection, Vector2 spawnPosition = default, float minDamage = 0, float maxDamage = 0, float projectileSpeed = 0)
         {
             _isDoubleShot = _statComponent.GetFinal(StatTarget.NumberOfShot) == 2;
             if (_isDoubleShot)
             {
-                ShootDouble(shootDirection, spawnPosition, minDamage, maxDamage);
+                ShootDouble(shootDirection, spawnPosition, minDamage, maxDamage, projectileSpeed);
             }
             else
             {
-                base.Shoot(shootDirection, spawnPosition, minDamage, maxDamage);
+                base.Shoot(shootDirection, spawnPosition, minDamage, maxDamage, projectileSpeed);
             }
         }
 
-        private void ShootDouble(Vector2 shootDirection, Vector2 spawnPosition = default, float minDamage = 0, float maxDamage = 0)
+        private void ShootDouble(Vector2 shootDirection, Vector2 spawnPosition = default, 
+            float minDamage = 0, float maxDamage = 0, float projectileSpeed = 0)
         {
             if (!_canShoot) return;
             var leftProjectile = _projectilePool.GetPooledObject();
@@ -67,22 +68,29 @@ namespace Shinrai.Weapon
             // Calculate perpendicular offset to the shoot direction
             float offsetDistance = 0.2f;
             Vector2 perpendicular = new Vector2(-shootDirection.y, shootDirection.x);
-            
             var leftPosition = spawnPosition + perpendicular * offsetDistance;
-            leftProjectile.transform.position = leftPosition;
-
             var rightPosition = spawnPosition - perpendicular * offsetDistance;
-            rightProjectile.transform.position = rightPosition;
+
+
+            leftProjectile.Configure()
+                .WithOwner(_owner)
+                .AtPosition(leftPosition)
+                .WithDamage(minDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT,
+                    maxDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT)
+                .WithDirection(shootDirection)
+                .WithSpeed(projectileSpeed != 0 ? projectileSpeed : leftProjectile.Speed)
+                .Build();
             
-            leftProjectile.transform.up = shootDirection;
-            rightProjectile.transform.up = shootDirection;
-            
-            leftProjectile.Spawn(_owner, 
-                minDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT, 
-                maxDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT);
-            rightProjectile.Spawn(_owner, 
-                minDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT, 
-                maxDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT);
+            rightProjectile.Configure()
+                .WithOwner(_owner)
+                .AtPosition(rightPosition)
+                .WithDamage( minDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT, maxDamage * Constant.HANDICAP_DAMAGE_FOR_DOUBLE_SHOT)
+                .WithDirection(shootDirection)
+                .WithSpeed(projectileSpeed != 0 ? projectileSpeed : rightProjectile.Speed)
+                .Build();
+
+            leftProjectile.Spawn();
+            rightProjectile.Spawn();
             
             StartCoroutine(OnDelayBetweenShots());
         }

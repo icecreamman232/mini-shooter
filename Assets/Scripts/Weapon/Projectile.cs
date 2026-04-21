@@ -12,6 +12,9 @@ namespace Shinrai.Weapon
         protected float _travelDistance;
         protected Vector2 _startPosition;
         protected bool _isActive;
+
+        public float Speed => _speed;
+        public float Range => _range;
         
         
         private void Update()
@@ -34,19 +37,47 @@ namespace Shinrai.Weapon
             }
         }
 
-        public void Spawn(EntityController owner, float minDamage, float maxDamage)
+        public void Spawn()
         {
             _isActive = true;
-            _damageComponent.AssignOwner(owner);
-            if (minDamage != 0 && maxDamage != 0)
-            {
-                _damageComponent.SetDamage(minDamage, maxDamage);
-            }
             gameObject.SetActive(true);
             _travelDistance = 0;
             _startPosition = transform.position;
         }
-        
+
+        public ProjectileBuilder Configure()
+        {
+            return new ProjectileBuilder(this);
+        }
+
+        // Builder helper methods (internal, called by ProjectileBuilder)
+        internal void AssignOwner(EntityController owner)
+        {
+            _damageComponent.AssignOwner(owner);
+        }
+
+        internal void SetDamage(float minDamage, float maxDamage)
+        {
+            _damageComponent.SetDamage(minDamage, maxDamage);
+        }
+
+        internal void SetSpeed(float speed)
+        {
+            _speed = speed;
+        }
+
+        internal void SetRange(float range)
+        {
+            _range = range;
+        }
+
+        internal void Activate()
+        {
+            _isActive = true;
+            gameObject.SetActive(true);
+            _travelDistance = 0;
+            _startPosition = transform.position;
+        }
         
         /// <summary>
         /// Override this method to destroy the projectile. This will call to projectile pool to disable the projectile.

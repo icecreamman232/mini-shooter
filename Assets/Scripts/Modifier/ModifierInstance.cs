@@ -13,6 +13,8 @@ namespace Shinrai.Modifiers
         MoveSpeed,
         FireRate,
         NumberOfShot,
+        ProjectileSize,
+        ProjectileSpeed,
     }
     
     public enum ModifierOperationType { Flat, AddPercent, MultiplyPercent }
