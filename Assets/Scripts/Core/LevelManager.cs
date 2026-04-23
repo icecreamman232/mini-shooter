@@ -10,7 +10,7 @@ namespace Shinrai.Core
     {
         [SerializeField] private PlayerController _playerPrefab;
         [SerializeField] private Transform _roomParent;
-        [SerializeField] private Room[] _roomPrefabs;
+        [SerializeField] private DemoBSP _roomGenerator;
         [SerializeField] private EnemyController[] _enemyPrefabs;
 
         private int _areaIndex = 0;
@@ -86,8 +86,8 @@ namespace Shinrai.Core
             {
                 Destroy(_currentRoom.gameObject);
             }
-            var chosenPrefab = _roomPrefabs.PickRandom();
-            _currentRoom = Instantiate(chosenPrefab, Vector3.zero, Quaternion.identity, _roomParent);
+            //var chosenPrefab = _roomPrefabs.PickRandom();
+            //_currentRoom = Instantiate(chosenPrefab, Vector3.zero, Quaternion.identity, _roomParent);
         }
         
         private void SpawnEnemies(Transform[] spawnPoints)
